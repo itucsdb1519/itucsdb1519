@@ -3,6 +3,6 @@ applications:
   host: itucsdb1519
   name: itucsdb1519
   path: .
-  domain: mybluemix.net
+  domain: eu-gb.mybluemix.net
   instances: 1
   memory: 128M
