@@ -41,4 +41,5 @@ Vagrant.configure("2") do |config|
     config.vm.provision :shell do |shell|
         shell.path = "vagrant-manifests/phppgadmin.sh"
     end
+    config.vm.boot_timeout = 1000 
 end
