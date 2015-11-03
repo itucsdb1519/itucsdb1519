@@ -12,6 +12,9 @@ import psycopg2
 def create_table():
     try:
         cursor = create_connection()
+    except Exception as e:
+        raise e
+    try:
         statement = """ CREATE TABLE COACHES(
         ID SERIAL PRIMARY KEY,
         NAME VARCHAR(45),
