@@ -26,8 +26,6 @@ def create_table():
     finally:
         close_connection(cursor)
 
-create_table()
-
 
 def get_coaches():
     cursor = create_connection()
@@ -62,6 +60,8 @@ def delete_coach(id):
 
 @app.route("/coaches/", methods=['GET', 'POST'])
 def coaches():
+
+    create_table()
 
     if request.method == 'GET':
         all_coaches = get_coaches() # get all coaches
