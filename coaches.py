@@ -8,7 +8,6 @@ from config import create_connection, close_connection
 import psycopg2
 
 
-
 def create_table():
     cursor = create_connection()
     try:
@@ -22,11 +21,13 @@ def create_table():
         )"""
         cursor.execute(statement)
         cursor.connection.commit()
-        close_connection(cursor)
     except psycopg2.DatabaseError:
         cursor.connection.rollback()
     finally:
-        cursor.connection.close()
+        close_connection(cursor)
+
+create_table()
+
 
 def get_coaches():
     cursor = create_connection()
@@ -49,6 +50,7 @@ def add_new_coach(name, gender, nationality, birth_date, current_team):
 
     return True
 
+
 def delete_coach(id):
     cursor = create_connection()
     statement = """DELETE FROM COACHES WHERE ID={}""".format(id)
@@ -57,10 +59,9 @@ def delete_coach(id):
 
     close_connection(cursor)
 
+
 @app.route("/coaches/", methods=['GET', 'POST'])
 def coaches():
-
-    create_table()
 
     if request.method == 'GET':
         all_coaches = get_coaches() # get all coaches
