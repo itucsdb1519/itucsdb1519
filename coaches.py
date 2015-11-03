@@ -10,8 +10,8 @@ import psycopg2
 
 
 def create_table():
+    cursor = create_connection()
     try:
-        cursor = create_connection()
         statement = """ CREATE TABLE COACHES(
         ID SERIAL PRIMARY KEY,
         NAME VARCHAR(45),
