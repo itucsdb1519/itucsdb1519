@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 encoding/coaches.py=utf-8
+=======
+encoding/tournaments.py=utf-8
+>>>>>>> d76d8830a7e6eb4ca0947f737139fafabe8e2569
