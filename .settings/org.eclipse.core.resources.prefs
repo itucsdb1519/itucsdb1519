@@ -1,14 +1,8 @@
-<<<<<<< HEAD
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=a17493e1051c2881f87f20f45f2933fc4b331047
 eclipse.preferences.version=1
-encoding/referees.py=utf-8
-=======
-eclipse.preferences.version=1
-<<<<<<< HEAD
 encoding/coaches.py=utf-8
-=======
+encoding/referees.py=utf-8
+encoding/teams.py=utf-8
 encoding/tournaments.py=utf-8
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/itucsdb1519/itucsdb1519.git
-=======
->>>>>>> d76d8830a7e6eb4ca0947f737139fafabe8e2569
->>>>>>> a17493e1051c2881f87f20f45f2933fc4b331047
