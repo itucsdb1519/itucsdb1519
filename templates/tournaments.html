@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+ <head>
+	<meta charset="utf-8" />
+	<title>Tournaments</title>
+	<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<a href="/"> Home Page </a>
+	<h2>tournaments</h2>
+	<form action="/tournaments/" method="POST">
+	<table>
+		<tr>
+			<th>#</th>
+			<th>Name</th>
+			<th>Year</th>
+			<th>Winner</th>
+			<th>Second Place</th>
+			<th>Best Player</th>
+		</tr>
+		{% for tournament in tournaments %}
+		<tr>
+			<td><input type="checkbox" name="tournaments_to_delete"value="{{tournament[0]}}" /></td>
+			<td> {{tournament[1]}} </td>
+			<td> {{tournament[2]}} </td>
+			<td> {{tournament[3]}} </td>
+			<td> {{tournament[4]}} </td>
+			<td> {{tournament[5]}} </td>
+		</tr>
+		{% endfor %}
+	</table>
+		<input type="submit" name="delete"value="delete" />
+	<h3>Add New Tournament</h3>
+
+		<table>
+			<tr>
+				<td>Name</td>
+				<td>Year</td>
+				<td>Winner</td>
+				<td>Second Place</td>
+				<td>Best Player</td>
+			</tr>
+			<tr>
+				<td> <input type="text" name="name" > </td>
+				<td> <input type="text" name="year" > </td>
+				<td> <input type="text" name="winner" > </td>
+				<td> <input type="text" name="second_place" > </td>
+				<td> <input type="text" name="best_player" > </td>
+
+			</tr>
+		</table>
+		<input type="submit" name="add"value="add" />
+
+	</form>
+
+</body>
+</html>

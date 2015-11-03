@@ -7,7 +7,7 @@ from flask import render_template
 from config import app
 import coaches
 import referees
-
+import tournaments
 
 @app.route('/')
 def home():
