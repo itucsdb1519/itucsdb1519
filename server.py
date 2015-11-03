@@ -8,6 +8,7 @@ from config import app
 import coaches
 import referees
 import tournaments
+import players
 
 @app.route('/')
 def home():
