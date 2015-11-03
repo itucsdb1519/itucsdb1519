@@ -39,7 +39,7 @@ def get_teams():
 def add_new_team(nation, gender, found_date, player1_name, player2_name, times_won):
     cursor = create_connection()
 
-    cursor.execute("INSERT INTO TEAMS (NATION, GENDER, FOUND_DATE, PLAYER1_NAME, PLAYER2_NAME, TIMES_WON) VALUES (%s, %s, %s, %s, %s)", 
+    cursor.execute("INSERT INTO TEAMS (NATION, GENDER, FOUND_DATE, PLAYER1_NAME, PLAYER2_NAME, TIMES_WON) VALUES (%s, %s, %s, %s, %s, %s)", 
             (nation, gender, found_date, player1_name, player2_name, times_won))
     cursor.connection.commit()
 
