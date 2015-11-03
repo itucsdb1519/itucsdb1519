@@ -10,8 +10,8 @@ import psycopg2
 
 
 def create_table():
+    cursor = create_connection()
     try:
-        cursor = create_connection()
         statement = """ CREATE TABLE COACHES(
         ID SERIAL PRIMARY KEY,
         NAME VARCHAR(45),
@@ -27,6 +27,8 @@ def create_table():
         cursor.connection.rollback()
     finally:
         cursor.connection.close()
+
+create_table()
 
 def get_coaches():
     cursor = create_connection()
@@ -60,7 +62,6 @@ def delete_coach(id):
 @app.route("/coaches/", methods=['GET', 'POST'])
 def coaches():
 
-    create_table()
 
     if request.method == 'GET':
         all_coaches = get_coaches() # get all coaches
