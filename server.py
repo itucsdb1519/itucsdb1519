@@ -5,10 +5,14 @@ from flask import Flask
 from flask import render_template
 
 from config import app
+
+
 import coaches
 import referees
 import tournaments
 import players
+import technicmembers
+
 
 @app.route('/')
 def home():
@@ -19,6 +23,7 @@ def home():
 
 
 if __name__ == '__main__':
+
 
     PORT = int(os.getenv('VCAP_APP_PORT', '5000'))
     app.run(host='0.0.0.0', port=int(PORT))
