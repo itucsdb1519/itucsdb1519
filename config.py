@@ -6,9 +6,6 @@ app.debug = True
 
 
 import psycopg2
-import psycopg2.extensions
-psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
-psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
 
 
 # database settings -----------------------------------
@@ -19,7 +16,7 @@ DB_SETTINGS = {
     'host': "localhost",
     'port': "54321",
 }
-#connection = psycopg2.connect(**DB_SETTINGS)
+
 # Database connections
 
 
