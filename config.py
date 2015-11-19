@@ -1,5 +1,6 @@
 from flask import Flask
 
+
 app = Flask(__name__)
 
 app.debug = True
@@ -20,9 +21,9 @@ DB_SETTINGS = {
 # Database connections
 
 
-
 def create_connection():
-    connection = psycopg2.connect(**DB_SETTINGS)
+    connection = psycopg2.connect(app.config['dsn'])
+ #   connection = psycopg2.connect(**DB_SETTINGS)
     cursor = connection.cursor()
     return cursor
 
