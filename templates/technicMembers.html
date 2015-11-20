@@ -17,13 +17,21 @@
 		</tr>
 		{% for tm in tms %}
 		<tr>
-			<td><input type="checkbox" name="tms_to_delete"value="{{tm[0]}}" /></td>
+			<td><input type="checkbox" name="tms"value="{{tm[0]}}" /></td>
 			<td> {{tm[1]}} </td>
 			<td> {{tm[2]}} </td>
 		</tr>
 		{% endfor %}
 	</table>
-		<input type="submit" name="delete"value="delete" />
+	<table>
+		<tr>
+			<td> <input type="text" name="name" > </td>
+			<td> <input type="text" name="gender" > </td>
+		</tr>
+	</table>
+		<input type="submit" name="update" value="update" />
+		<input type="submit" name="delete" value="delete" />
+
 	<h3>Add New Technic Member</h3>
 
 		<table>
@@ -37,7 +45,7 @@
 
 			</tr>
 		</table>
-		<input type="submit" name="add"value="add" />
+		<input type="submit" name="add" value="add" />
 
 	</form>
 

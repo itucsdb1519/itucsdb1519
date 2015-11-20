@@ -30,6 +30,15 @@ class Store:
             with connection.cursor() as cursor:
                 cursor.execute("INSERT INTO TECHNICMEMBERS (NAME, GENDER) VALUES(%s, %s)", (tm.name, tm.gender))
 
+    def updateTm(self, tm, id, dsn):
+        with dbapi2.connect(dsn) as connection:
+            with connection.cursor() as cursor:
+
+                query = """UPDATE TECHNICMEMBERS SET NAME= '{}', GENDER = '{}' WHERE ID = {} """.format(tm.name, tm.gender, id)
+                #cursor.execute("""UPDATE TECHNICMEMBERS SET (NAME, GENDER) WHERE (ID=?)  VALUES(%s, %s)""", (id, tm.name, tm.gender))
+                #cursor.execute(query, (tm.name, tm.gender, id))
+                cursor.execute(query)
+
     def deleteTm(self, id, dsn):
         with dbapi2.connect(dsn) as connection:
             with connection.cursor() as cursor:
