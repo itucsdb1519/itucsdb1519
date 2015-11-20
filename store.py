@@ -5,8 +5,8 @@ from technicmember import tm
 
 
 class Store:
-    def __init__(self, dsn):
-        dsn = dsn
+    def __init__(self, dbSettings):
+        self.dsn = dbSettings
 
     def createTable(self, dsn):
         try:
@@ -25,18 +25,18 @@ class Store:
         finally:
             connection.close()
 
-    def addTm(self, dsn, tm):
+    def addTm(self, tm, dsn):
         with dbapi2.connect(dsn) as connection:
             with connection.cursor() as cursor:
                 cursor.execute("INSERT INTO TECHNICMEMBERS (NAME, GENDER) VALUES(%s, %s)", (tm.name, tm.gender))
 
-    def deleteTm(self, dsn, id):
+    def deleteTm(self, id, dsn):
         with dbapi2.connect(dsn) as connection:
             with connection.cursor() as cursor:
                 query = """ DELETE FROM TECHNICMEMBERS WHERE ID = {}""".format(id)
                 cursor.execute(query)
 
-    def selectTm(self, dsn, id):
+    def selectTm(self, id, dsn):
         with dbapi2.connect(dsn) as connection:
             with connection.cursor() as cursor:
                 query = """SELECT FROM TECHNICMEMBERS WHERE (ID = ?)"""

@@ -16,8 +16,7 @@ import psycopg2 as dbapi2
 @app.route('/technicMembers', methods = ['GET', 'POST'])
 def technicMembers():
 
-    dsn = """user=vagrant password=vagrant
-    host=localhost port=54321 dbname=itucsdb"""
+    dsn = app.config['dsn']
 
     app.store = Store(dsn)
     app.store.createTable(dsn)
@@ -28,7 +27,8 @@ def technicMembers():
     elif 'delete' in request.form:
         ids = request.form.getlist('tms_to_delete')
         for id in ids:
-            app.store.deleteTm(dsn,id)
+            app.store.deleteTm(id, dsn)
+
         allTms = app.store.getAllTms(dsn)
 
 
@@ -36,7 +36,8 @@ def technicMembers():
         name = request.form['name']
         gender = request.form['gender']
         newTm = tm(name, gender)
-        app.store.addTm(dsn, newTm)
+        app.store.addTm(newTm, dsn)
+
         allTms = app.store.getAllTms(dsn)
 
     return render_template('technicMembers.html', tms = allTms )
