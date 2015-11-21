@@ -60,7 +60,7 @@ def delete_tournament(id):
 @app.route("/tournaments/", methods=['GET', 'POST'])
 def tournaments():
 
-    create_table()
+    #create_table()
 
     if request.method == 'GET':
         all_tournaments = get_tournaments() # get all tournaments

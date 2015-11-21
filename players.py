@@ -58,7 +58,7 @@ def delete_player(id):
 @app.route("/players", methods=['GET', 'POST'])
 def players():
 
-    create_table()
+    #create_table()
 
     if request.method == 'GET':
         all_players = get_players() # get all players

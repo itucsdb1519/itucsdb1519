@@ -13,6 +13,7 @@ import coaches
 import referees
 import tournaments
 import players
+from store import Store
 
 import technicmembers
 
@@ -29,6 +30,16 @@ def get_elephantsql_dsn(vcap_services):
              dbname='{}'""".format(user, password, host, port, dbname)
     return dsn
 
+@app.route('/initializeDatabase')
+def initDb():
+    coaches.create_table()
+    players.create_table()
+    tournaments.create_table()
+    teams.create_table()
+    referees.create_table()
+    app.store = Store(app.config['dsn'])
+    app.store.createTable(app.config['dsn'])
+    return render_template('home.html')
 
 @app.route('/')
 def home():

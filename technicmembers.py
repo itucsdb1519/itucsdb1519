@@ -19,7 +19,7 @@ def technicMembers():
     dsn = app.config['dsn']
 
     app.store = Store(dsn)
-    app.store.createTable(dsn)
+    #app.store.createTable(dsn)
 
     if request.method == 'GET':
         allTms = app.store.getAllTms(dsn)

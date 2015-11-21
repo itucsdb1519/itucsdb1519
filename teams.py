@@ -58,7 +58,7 @@ def delete_team(id):
 
 @app.route("/teams/", methods=['GET', 'POST'])
 def teams():
-    create_table()
+    #create_table()
 
     if request.method == 'GET':
         all_teams = get_teams()

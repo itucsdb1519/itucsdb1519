@@ -60,7 +60,7 @@ def delete_referee(id):
 @app.route("/referees/", methods=['GET', 'POST'])
 def referees():
 
-    create_table()
+    #create_table()
 
     if request.method == 'GET':
         all_referees = get_referees()
