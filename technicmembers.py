@@ -33,8 +33,8 @@ def technicMembers():
 
 
     elif 'add' in request.form:
-        name = request.form['name']
-        gender = request.form['gender']
+        name = request.form['nameToAdd']
+        gender = request.form['genderToAdd']
         newTm = tm(name, gender)
         app.store.addTm(newTm, dsn)
 
@@ -43,8 +43,8 @@ def technicMembers():
     elif 'update' in request.form:
         ids = request.form.getlist('tms')
         id = ids[0]
-        name = request.form['name']
-        gender = request.form['gender']
+        name = request.form['nameToUpdate']
+        gender = request.form['genderToUpdate']
         newTm = tm(name, gender)
         app.store.updateTm(newTm, id, dsn)
         #return redirect(url_for('updateTm', id = id))
