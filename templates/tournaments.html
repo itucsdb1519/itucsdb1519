@@ -37,7 +37,8 @@
 			<th>Year</th>
 			<th>Winner</th>
 			<th>Second Place</th>
-			<th>Best Player</th>
+			<th>Current Best Player</th>
+			<th>New Best Player</th>
 		</tr>
 		{% for tournament in tournamentsToShow %}
 		<tr>
@@ -46,7 +47,12 @@
 			<td> <input type="text" name="yearUpdate{{tournament[0]}}" value="{{tournament[2]}}"> </td>
 			<td> <input type="text" name="winnerUpdate{{tournament[0]}}" value="{{tournament[3]}}"> </td>
 			<td> <input type="text" name="second_placeUpdate{{tournament[0]}}" value="{{tournament[4]}}"> </td>
-			<td> <input type="text" name="best_playerUpdate{{tournament[0]}}" value="{{tournament[5]}}"> </td>
+			<td> {{tournament[5]}} </td>
+			<td><select name="best_playerUpdate{{tournament[0]}}">
+				{% for player in PlayersSelect %}
+  					<option value="{{player[0]}}">{{player[1]}}</option>
+  				{% endfor %}
+					</select></td>
 			<td><button type="submit" name="update" value="{{tournament[0]}}" >Update</button></td>
 		</tr>
 		{% endfor %}
@@ -91,7 +97,11 @@
 				<td> <input type="text" name="year" > </td>
 				<td> <input type="text" name="winner" > </td>
 				<td> <input type="text" name="second_place" > </td>
-				<td> <input type="text" name="best_player" > </td>
+				<td><select name="best_player">
+				{% for player in PlayersSelect %}
+  					<option value="{{player[0]}}">{{player[1]}}</option>
+  				{% endfor %}
+					</select></td>
 
 			</tr>
 		</table>
