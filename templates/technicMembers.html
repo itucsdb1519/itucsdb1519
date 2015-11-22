@@ -7,8 +7,20 @@
 </head>
 <body>
 <a href="/"> Home Page </a>
-	<h2> Technic Members </h2>
+	<h1> Technic Members </h1>
 	<form action="/technicMembers" method="POST">
+	<h2> Find technic members </h2>
+	<table>
+		<tr>
+			<td> <input type="text" name="nameToFind" ></td>
+			<td> <input type="text" name="genderToFind" ></td>
+			<td> <input type="submit" name="find" value="find" /></td>
+		</tr>
+
+	</table>
+
+	<br/> <br/>
+
 	<table>
 		<tr>
 			<th>#</th>
@@ -20,19 +32,22 @@
 			<td><input type="checkbox" name="tms"value="{{tm[0]}}" /></td>
 			<td> {{tm[1]}} </td>
 			<td> {{tm[2]}} </td>
+
 		</tr>
 		{% endfor %}
 	</table>
-	<table>
+
+	<br/>
+
 		<tr>
 			<td> <input type="text" name="nameToUpdate" > </td>
 			<td> <input type="text" name="genderToUpdate" > </td>
 		</tr>
-	</table>
+
 		<input type="submit" name="update" value="update" />
 		<input type="submit" name="delete" value="delete" />
 
-	<h3>Add New Technic Member</h3>
+	<h2>Add New Technic Member</h2>
 
 		<table>
 			<tr>

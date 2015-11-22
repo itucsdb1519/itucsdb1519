@@ -33,10 +33,7 @@ class Store:
     def updateTm(self, tm, id, dsn):
         with dbapi2.connect(dsn) as connection:
             with connection.cursor() as cursor:
-
                 query = """UPDATE TECHNICMEMBERS SET NAME= '{}', GENDER = '{}' WHERE ID = {} """.format(tm.name, tm.gender, id)
-                #cursor.execute("""UPDATE TECHNICMEMBERS SET (NAME, GENDER) WHERE (ID=?)  VALUES(%s, %s)""", (id, tm.name, tm.gender))
-                #cursor.execute(query, (tm.name, tm.gender, id))
                 cursor.execute(query)
 
     def deleteTm(self, id, dsn):
@@ -45,12 +42,13 @@ class Store:
                 query = """ DELETE FROM TECHNICMEMBERS WHERE ID = {}""".format(id)
                 cursor.execute(query)
 
-    def selectTm(self, id, dsn):
+    def selectTms(self, tm, dsn):
         with dbapi2.connect(dsn) as connection:
             with connection.cursor() as cursor:
-                query = """SELECT FROM TECHNICMEMBERS WHERE (ID = ?)"""
-                cursor.execute(query,id)
-                return tm
+                query = """SELECT * FROM TECHNICMEMBERS WHERE(NAME LIKE  '{}%' ) AND (GENDER LIKE '{}%' )""".format(tm.name, tm.gender)
+                cursor.execute(query)
+                tms = cursor.fetchall()
+                return tms
 
     def getAllTms (self, dsn):
         with dbapi2.connect(dsn) as connection:

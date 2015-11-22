@@ -28,7 +28,6 @@ def technicMembers():
         ids = request.form.getlist('tms')
         for id in ids:
             app.store.deleteTm(id, dsn)
-
         allTms = app.store.getAllTms(dsn)
 
 
@@ -37,7 +36,6 @@ def technicMembers():
         gender = request.form['genderToAdd']
         newTm = tm(name, gender)
         app.store.addTm(newTm, dsn)
-
         allTms = app.store.getAllTms(dsn)
 
     elif 'update' in request.form:
@@ -47,21 +45,18 @@ def technicMembers():
         gender = request.form['genderToUpdate']
         newTm = tm(name, gender)
         app.store.updateTm(newTm, id, dsn)
-        #return redirect(url_for('updateTm', id = id))
-
         allTms = app.store.getAllTms(dsn)
+
+    elif 'find' in request.form:
+        name = request.form['nameToFind']
+        gender = request.form['genderToFind']
+        findTm = tm(name, gender)
+        allTms = app.store.selectTms(findTm, dsn)
 
 
     return render_template('technicMembers.html', tms = allTms )
 
-#@app.route('/updateTm/<int:id>', methods = ['GET','POST'])
-#def updateTm(id):
-#    name = request.form['name']
-#    gender = request.form['gender']
-#    newTm = tm(name, gender)
-#    app.store.updateTm(newTm, id, dsn)
-#
-#    return render_template('updateTm.html')
+
 
 
 
