@@ -8,7 +8,7 @@
 <body>
 <a href="/"> Home Page </a>
 	<form action="/matches" method="POST">
-	<h2>Search</h2>
+	<h2>Search and Update</h2>
 	<table>
 		<tr>
 			<th>Tournament</th>
@@ -42,11 +42,12 @@
 		{% for match in matchesToShow %}
 		<tr>
 
-			<td> {{match[0]}} </td>
-			<td> {{match[1]}} </td>
-			<td> {{match[2]}} </td>
-			<td> {{match[3]}} </td>
-			<td> {{match[4]}} </td>
+			<td> <input type="text" name="tournamentUpdate{{match[0]}}" value="{{match[1]}}"> </td>
+			<td> <input type="text" name="team1Update{{match[0]}}" value="{{match[2]}}"> </td>
+			<td> <input type="text" name="team2Update{{match[0]}}" value="{{match[3]}}"> </td>
+			<td> <input type="text" name="winnerUpdate{{match[0]}}" value="{{match[4]}}"> </td>
+			<td> <input type="text" name="dateUpdate{{match[0]}}" value="{{match[5]}}"> </td>
+			<td><button type="submit" name="update" value="{{match[0]}}" >Update</button></td>
 		</tr>
 		{% endfor %}
 	</table>
@@ -66,11 +67,11 @@
 		{% for match in matches %}
 		<tr>
 			<td><input type="checkbox" name="matches_to_delete"value="{{match[0]}}" /></td>
-			<td> {{match[0]}} </td>
 			<td> {{match[1]}} </td>
 			<td> {{match[2]}} </td>
 			<td> {{match[3]}} </td>
 			<td> {{match[4]}} </td>
+			<td> {{match[5]}} </td>
 		</tr>
 		{% endfor %}
 	</table>
