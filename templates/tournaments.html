@@ -7,8 +7,30 @@
 </head>
 <body>
 <a href="/"> Home Page </a>
-	<h2>tournaments</h2>
 	<form action="/tournaments/" method="POST">
+	<h2>Search</h2>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Year</th>
+			<th>Winner</th>
+			<th>Second Place</th>
+			<th>Best Player</th>
+		</tr>
+		<tr>
+			<td> <input type="text" name="nameFind" > </td>
+			<td> <input type="text" name="yearFind" > </td>
+			<td> <input type="text" name="winnerFind" > </td>
+			<td> <input type="text" name="second_placeFind" > </td>
+			<td> <input type="text" name="best_playerFind" > </td>
+
+		</tr>
+	</table>
+	<input type="submit" name="find"value="find" />
+
+	<br/><br/><br/>
+
+	<h3>Tournaments</h3>
 	<table>
 		<tr>
 			<th>#</th>
@@ -30,7 +52,7 @@
 		{% endfor %}
 	</table>
 		<input type="submit" name="delete"value="delete" />
-	<h3>Add New Tournament</h3>
+	<h4>Add New Tournament</h4>
 
 		<table>
 			<tr>

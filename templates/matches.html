@@ -7,8 +7,30 @@
 </head>
 <body>
 <a href="/"> Home Page </a>
-	<h2>matches</h2>
 	<form action="/matches" method="POST">
+	<h2>Search</h2>
+	<table>
+		<tr>
+			<th>Tournament</th>
+			<th>Team1</th>
+			<th>Team2</th>
+			<th>Winner</th>
+			<th>Date</th>
+		</tr>
+		<tr>
+			<td> <input type="text" name="tournamentFind" > </td>
+			<td> <input type="text" name="team1Find" > </td>
+			<td> <input type="text" name="team2Find" > </td>
+			<td> <input type="text" name="winnerFind" > </td>
+			<td> <input type="text" name="dateFind" > </td>
+
+		</tr>
+	</table>
+	<input type="submit" name="find"value="find" />
+
+	<br/><br/><br/>
+
+	<h3>Matches</h3>
 	<table>
 		<tr>
 			<th>#</th>
@@ -30,7 +52,7 @@
 		{% endfor %}
 	</table>
 		<input type="submit" name="delete"value="delete" />
-	<h3>Add New Match</h3>
+	<h4>Add New Match</h4>
 
 		<table>
 			<tr>

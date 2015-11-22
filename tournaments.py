@@ -57,6 +57,18 @@ def delete_tournament(id):
 
     close_connection(cursor)
 
+def find_tournament(nameFind, yearFind, winnerFind, second_placeFind, best_playerFind):
+    statement = """SELECT * FROM TOURNAMENTS WHERE(NAME LIKE  '{}%' ) AND (YEAR LIKE '{}%' ) AND (WINNER LIKE '{}%' ) AND (SECOND_PLACE LIKE '{}%' ) AND (BEST_PLAYER LIKE '{}%' )""".format(nameFind, yearFind, winnerFind, second_placeFind, best_playerFind)
+
+    cursor = create_connection()
+    cursor.execute(statement)
+    tournaments = cursor.fetchall()
+    cursor.connection.commit()
+
+    close_connection(cursor)
+
+    return tournaments
+
 @app.route("/tournaments/", methods=['GET', 'POST'])
 def tournaments():
 
@@ -82,4 +94,12 @@ def tournaments():
         for id in ids:
             delete_tournament(id)
         all_tournaments = get_tournaments()
+    elif 'find' in request.form:
+        nameFind = request.form['nameFind']
+        yearFind = request.form['yearFind']
+        winnerFind = request.form['winnerFind']
+        second_placeFind = request.form['second_placeFind']
+        best_playerFind = request.form['best_playerFind']
+
+        all_tournaments = find_tournament(nameFind,yearFind,winnerFind,second_placeFind,best_playerFind)
     return render_template("tournaments.html", tournaments=all_tournaments)

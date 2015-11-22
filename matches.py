@@ -56,6 +56,18 @@ def delete_match(tournament):
 
     close_connection(cursor)
 
+def find_match(tournamentFind, team1Find, team2Find, winnerFind, dateFind):
+    statement = """SELECT * FROM MATCHES WHERE(TOURNAMENT LIKE  '{}%' ) AND (TEAM1 LIKE '{}%' ) AND (TEAM2 LIKE '{}%' ) AND (WINNER LIKE '{}%' ) AND (DATE LIKE '{}%' )""".format(tournamentFind, team1Find, team2Find, winnerFind, dateFind)
+
+    cursor = create_connection()
+    cursor.execute(statement)
+    matches = cursor.fetchall()
+    cursor.connection.commit()
+
+    close_connection(cursor)
+
+    return matches
+
 @app.route("/matches", methods=['GET', 'POST'])
 def matches():
 
@@ -81,4 +93,12 @@ def matches():
         for tournament in tournaments:
             delete_match(tournament)
         all_matches = get_matches()
+    elif 'find' in request.form:
+        tournamentFind = request.form['tournamentFind']
+        team1Find = request.form['team1Find']
+        team2Find = request.form['team2Find']
+        winnerFind = request.form['winnerFind']
+        dateFind = request.form['dateFind']
+
+        all_matches = find_match(tournamentFind, team1Find, team2Find, winnerFind, dateFind)
     return render_template("matches.html", matches=all_matches)
