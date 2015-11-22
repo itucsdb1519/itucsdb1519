@@ -13,6 +13,7 @@ import coaches
 import referees
 import tournaments
 import players
+import login
 from store import Store
 
 import technicmembers
