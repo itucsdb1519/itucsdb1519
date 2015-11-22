@@ -76,6 +76,7 @@ def tournaments():
 
     if request.method == 'GET':
         all_tournaments = get_tournaments() # get all tournaments
+        queriedTournaments = find_tournament('?','?','?','?','?')
 
     elif 'add' in request.form:
         # ----------------------------------------------
@@ -89,11 +90,13 @@ def tournaments():
         add_new_tournament(name, year, winner, second_place, best_player) # save to db
 
         all_tournaments = get_tournaments() # get all tournaments
+        queriedTournaments = find_tournament('?','?','?','?','?')
     elif 'delete' in request.form:
         ids = request.form.getlist('tournaments_to_delete')
         for id in ids:
             delete_tournament(id)
         all_tournaments = get_tournaments()
+        queriedTournaments = find_tournament('?','?','?','?','?')
     elif 'find' in request.form:
         nameFind = request.form['nameFind']
         yearFind = request.form['yearFind']
@@ -101,5 +104,6 @@ def tournaments():
         second_placeFind = request.form['second_placeFind']
         best_playerFind = request.form['best_playerFind']
 
-        all_tournaments = find_tournament(nameFind,yearFind,winnerFind,second_placeFind,best_playerFind)
-    return render_template("tournaments.html", tournaments=all_tournaments)
+        all_tournaments = get_tournaments()
+        queriedTournaments = find_tournament(nameFind,yearFind,winnerFind,second_placeFind,best_playerFind)
+    return render_template("tournaments.html", tournaments=all_tournaments, tournamentsToShow=queriedTournaments)

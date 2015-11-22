@@ -30,6 +30,29 @@
 
 	<br/><br/><br/>
 
+	<table>
+		<tr>
+
+			<th>Tournament</th>
+			<th>Team1</th>
+			<th>Team2</th>
+			<th>Winner</th>
+			<th>Date</th>
+		</tr>
+		{% for match in matchesToShow %}
+		<tr>
+
+			<td> {{match[0]}} </td>
+			<td> {{match[1]}} </td>
+			<td> {{match[2]}} </td>
+			<td> {{match[3]}} </td>
+			<td> {{match[4]}} </td>
+		</tr>
+		{% endfor %}
+	</table>
+
+	<br/><br/><br/>
+
 	<h3>Matches</h3>
 	<table>
 		<tr>

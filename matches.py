@@ -75,6 +75,7 @@ def matches():
 
     if request.method == 'GET':
         all_matches = get_matches() # get all matches
+        queriedMatches = find_match('?','?','?','?','?')
 
     elif 'add' in request.form:
         # ----------------------------------------------
@@ -88,11 +89,13 @@ def matches():
         add_new_match(tournament, team1, team2, winner, date) # save to db
 
         all_matches = get_matches() # get all matches
+        queriedMatches = find_match('?','?','?','?','?')
     elif 'delete' in request.form:
         tournaments = request.form.getlist('matches_to_delete')
         for tournament in tournaments:
             delete_match(tournament)
         all_matches = get_matches()
+        queriedMatches = find_match('?','?','?','?','?')
     elif 'find' in request.form:
         tournamentFind = request.form['tournamentFind']
         team1Find = request.form['team1Find']
@@ -100,5 +103,6 @@ def matches():
         winnerFind = request.form['winnerFind']
         dateFind = request.form['dateFind']
 
-        all_matches = find_match(tournamentFind, team1Find, team2Find, winnerFind, dateFind)
-    return render_template("matches.html", matches=all_matches)
+        all_matches = get_matches()
+        queriedMatches = find_match(tournamentFind, team1Find, team2Find, winnerFind, dateFind)
+    return render_template("matches.html", matches=all_matches, matchesToShow=queriedMatches)

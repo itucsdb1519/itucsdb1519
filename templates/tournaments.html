@@ -30,6 +30,29 @@
 
 	<br/><br/><br/>
 
+	<table>
+		<tr>
+
+			<th>Name</th>
+			<th>Year</th>
+			<th>Winner</th>
+			<th>Second Place</th>
+			<th>Best Player</th>
+		</tr>
+		{% for tournament in tournamentsToShow %}
+		<tr>
+
+			<td> {{tournament[1]}} </td>
+			<td> {{tournament[2]}} </td>
+			<td> {{tournament[3]}} </td>
+			<td> {{tournament[4]}} </td>
+			<td> {{tournament[5]}} </td>
+		</tr>
+		{% endfor %}
+	</table>
+
+	<br/><br/><br/>
+
 	<h3>Tournaments</h3>
 	<table>
 		<tr>
