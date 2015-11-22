@@ -117,11 +117,11 @@ def tournaments():
     elif 'update' in request.form:
         ids = request.form.getlist('update')
         for id in ids:
-            nameUpdate = request.form['nameUpdate']
-            yearUpdate = request.form['yearUpdate']
-            winnerUpdate = request.form['winnerUpdate']
-            second_placeUpdate = request.form['second_placeUpdate']
-            best_playerUpdate = request.form['best_playerUpdate']
+            nameUpdate = request.form['nameUpdate'+id]
+            yearUpdate = request.form['yearUpdate'+id]
+            winnerUpdate = request.form['winnerUpdate'+id]
+            second_placeUpdate = request.form['second_placeUpdate'+id]
+            best_playerUpdate = request.form['best_playerUpdate'+id]
             update_tournament(id, nameUpdate, yearUpdate, winnerUpdate, second_placeUpdate, best_playerUpdate)
 
         all_tournaments = get_tournaments()

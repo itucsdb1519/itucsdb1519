@@ -42,12 +42,12 @@
 		{% for tournament in tournamentsToShow %}
 		<tr>
 
-			<td> <input type="text" name="nameUpdate" value="{{tournament[1]}}"> </td>
-			<td> <input type="text" name="yearUpdate" value="{{tournament[2]}}"> </td>
-			<td> <input type="text" name="winnerUpdate" value="{{tournament[3]}}"> </td>
-			<td> <input type="text" name="second_placeUpdate" value="{{tournament[4]}}"> </td>
-			<td> <input type="text" name="best_playerUpdate" value="{{tournament[5]}}"> </td>
-			<td><input type="submit" name="update"value="{{tournament[0]}}" /></td>
+			<td> <input type="text" name="nameUpdate{{tournament[0]}}" value="{{tournament[1]}}"> </td>
+			<td> <input type="text" name="yearUpdate{{tournament[0]}}" value="{{tournament[2]}}"> </td>
+			<td> <input type="text" name="winnerUpdate{{tournament[0]}}" value="{{tournament[3]}}"> </td>
+			<td> <input type="text" name="second_placeUpdate{{tournament[0]}}" value="{{tournament[4]}}"> </td>
+			<td> <input type="text" name="best_playerUpdate{{tournament[0]}}" value="{{tournament[5]}}"> </td>
+			<td><button type="submit" name="update" value="{{tournament[0]}}" >Update</button></td>
 		</tr>
 		{% endfor %}
 	</table>
