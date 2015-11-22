@@ -16,7 +16,7 @@ def create_table():
         NAME VARCHAR(45),
         GENDER VARCHAR(6),
         NATIONALITY VARCHAR(45),
-        BIRTH_DATE  DATE,
+        BIRTH_DATE  VARCHAR(10),
         CURRENT_TEAM VARCHAR(20)
         )"""
         cursor.execute(statement)
@@ -37,6 +37,26 @@ def get_coaches():
 
     return coaches
 
+def update_coach(id,new_team):
+    cursor = create_connection()
+    statement = """UPDATE COACHES SET CURRENT_TEAM = '{}' WHERE ID = {}""".format(new_team,id)
+    cursor.execute(statement)
+    cursor.connection.commit()
+
+    close_connection(cursor)
+
+def find_coach(para_1, para_2, para_3, para_4, para_5):
+
+    statement = """SELECT * FROM COACHES WHERE(NAME LIKE  '{}%' ) AND (GENDER LIKE '{}%' ) AND (NATIONALITY LIKE '{}%' ) AND (BIRTH_DATE LIKE '{}%' ) AND (CURRENT_TEAM LIKE '{}%' )""".format(para_1,para_2,para_3,para_4,para_5)
+
+    cursor = create_connection()
+    cursor.execute(statement)
+    coaches = cursor.fetchall()
+    cursor.connection.commit()
+
+    close_connection(cursor)
+
+    return coaches
 
 def add_new_coach(name, gender, nationality, birth_date, current_team):
     cursor = create_connection()
@@ -78,9 +98,29 @@ def coaches():
         add_new_coach(name, gender, nationality, birth_date, current_team) # save to db
 
         all_coaches = get_coaches() # get all coaches
+
+    elif 'update' in request.form:
+        ids = request.form.getlist('coaches_to_update')
+        for id in ids:
+            new_team = request.form['new_team']
+            update_coach(id,new_team)
+        all_coaches = get_coaches()
+
+    elif 'find' in request.form:
+        para_1 = request.form['name_find']
+        para_2 = request.form['gender_find']
+        para_3 = request.form['nationality_find']
+        para_4 = request.form['birth_date_find']
+        para_5 = request.form['current_team_find']
+
+        all_coaches = find_coach(para_1,para_2,para_3,para_4,para_5)
+
+
     elif 'delete' in request.form:
         ids = request.form.getlist('coaches_to_delete')
         for id in ids:
             delete_coach(id)
+        all_coaches = get_coaches()
+    elif 'showall' in request.form:
         all_coaches = get_coaches()
     return render_template("coaches.html", coaches=all_coaches)

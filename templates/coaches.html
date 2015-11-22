@@ -9,27 +9,55 @@
 <a href="/"> Home Page </a>
 	<h2>Coaches</h2>
 	<form action="/coaches/" method="POST">
+	<h3>Search</h3>
 	<table>
 		<tr>
-			<th>#</th>
 			<th>Name</th>
 			<th>Gender</th>
 			<th>Nationality</th>
 			<th>Birth Date</th>
 			<th>Current Team</th>
 		</tr>
+		<tr>
+			<td> <input type="text" name="name_find" > </td>
+			<td> <input type="text" name="gender_find" > </td>
+			<td> <input type="text" name="nationality_find" > </td>
+			<td> <input type="text" name="birth_date_find" > </td>
+			<td> <input type="text" name="current_team_find" > </td>
+
+		</tr>
+	</table>
+	<input type="submit" name="find"value="Find" />
+	<input type="submit" name="showall"value="Show All" />
+
+	<br><br><br>
+	<table>
+		<tr>
+			<th>Delete</th>
+			<th>Update</th>
+			<th>Name</th>
+			<th>Gender</th>
+			<th>Nationality</th>
+			<th>Birth Date</th>
+			<th>Current Team</th>
+			<th>New Team</th>
+		</tr>
 		{% for coach in coaches %}
 		<tr>
 			<td><input type="checkbox" name="coaches_to_delete"value="{{coach[0]}}" /></td>
+			<td><input type="checkbox" name="coaches_to_update"value="{{coach[0]}}" /></td>
 			<td> {{coach[1]}} </td>
 			<td> {{coach[2]}} </td>
 			<td> {{coach[3]}} </td>
 			<td> {{coach[4]}} </td>
 			<td> {{coach[5]}} </td>
+			<td> <input type="text" name="new_team" > </td>
+
 		</tr>
 		{% endfor %}
 	</table>
 		<input type="submit" name="delete"value="delete" />
+		<input type="submit" name="update"value="update" />
 	<h3>Add New Coach</h3>
 
 		<table>
