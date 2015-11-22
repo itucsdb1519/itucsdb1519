@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+ <head>
+	<meta charset="utf-8" />
+	<title>Matches</title>
+	<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<a href="/"> Home Page </a>
+	<h2>matches</h2>
+	<form action="/matches" method="POST">
+	<table>
+		<tr>
+			<th>#</th>
+			<th>Tournament</th>
+			<th>Team1</th>
+			<th>Team2</th>
+			<th>Winner</th>
+			<th>Date</th>
+		</tr>
+		{% for match in matches %}
+		<tr>
+			<td><input type="checkbox" name="matches_to_delete"value="{{match[0]}}" /></td>
+			<td> {{match[1]}} </td>
+			<td> {{match[2]}} </td>
+			<td> {{match[3]}} </td>
+			<td> {{match[4]}} </td>
+			<td> {{match[5]}} </td>
+		</tr>
+		{% endfor %}
+	</table>
+		<input type="submit" name="delete"value="delete" />
+	<h3>Add New Match</h3>
+
+		<table>
+			<tr>
+				<td>Tournament</td>
+				<td>Team1</td>
+				<td>Team2</td>
+				<td>Winner</td>
+				<td>Date</td>
+			</tr>
+			<tr>
+				<td> <input type="text" name="tournament" > </td>
+				<td> <input type="text" name="team1" > </td>
+				<td> <input type="text" name="team2" > </td>
+				<td> <input type="text" name="winner" > </td>
+				<td> <input type="text" name="date" > </td>
+
+			</tr>
+		</table>
+		<input type="submit" name="add"value="add" />
+
+	</form>
+
+</body>
+</html>

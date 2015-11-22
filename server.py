@@ -14,6 +14,7 @@ import referees
 import tournaments
 import players
 import login
+import matches
 from store import Store
 
 import technicmembers
@@ -38,6 +39,8 @@ def initDb():
     tournaments.create_table()
     teams.create_table()
     referees.create_table()
+    login.create_table()
+    matches.create_table()
     app.store = Store(app.config['dsn'])
     app.store.createTable(app.config['dsn'])
     return render_template('home.html')

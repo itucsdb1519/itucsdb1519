@@ -56,7 +56,7 @@ def delete_user(id):
 @app.route("/login", methods=['GET', 'POST'])
 def users():
 
-    create_table()
+    #create_table()
 
     if request.method == 'GET':
         all_users = get_users() # get all users
