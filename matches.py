@@ -14,8 +14,8 @@ def create_table():
         cursor = create_connection()
         statement = """ CREATE TABLE MATCHES(
         TOURNAMENT VARCHAR(45),
-        TEAM1 VARCHAR(4),
-        TEAM2 VARCHAR(45),
+        TEAM1 VARCHAR(10),
+        TEAM2 VARCHAR(20),
         WINNER  VARCHAR(20),
         DATE VARCHAR(20)
         )"""
@@ -50,7 +50,7 @@ def add_new_match(tournament, team1, team2, winner, date):
 
 def delete_match(tournament):
     cursor = create_connection()
-    statement = """DELETE FROM MATCHES WHERE TOURNAMENT={}""".format(tournament)
+    statement = """DELETE FROM MATCHES WHERE TOURNAMENT='{}'""".format(tournament)
     cursor.execute(statement)
     cursor.connection.commit()
 

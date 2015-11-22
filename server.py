@@ -3,6 +3,9 @@ import json
 import os
 import re
 
+from config import create_connection
+from config import close_connection
+
 from flask import Flask
 from flask import render_template
 
@@ -31,6 +34,15 @@ def get_elephantsql_dsn(vcap_services):
     dsn = """user='{}' password='{}' host='{}' port={}
              dbname='{}'""".format(user, password, host, port, dbname)
     return dsn
+
+@app.route('/uninitializeDatabase')
+def uninitDb():
+    statement="""DROP TABLE MATCHES, PLAYERS, COACHES, REFEREES, TEAMS, TECHNICMEMBERS, TOURNAMENTS, USERS"""
+    cursor = create_connection()
+    cursor.execute(statement)
+    cursor.connection.commit()
+    close_connection(cursor)
+    return render_template('home.html')
 
 @app.route('/initializeDatabase')
 def initDb():
