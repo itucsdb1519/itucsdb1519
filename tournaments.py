@@ -69,6 +69,14 @@ def find_tournament(nameFind, yearFind, winnerFind, second_placeFind, best_playe
 
     return tournaments
 
+def update_tournament(id, nameUpdate, yearUpdate, winnerUpdate, second_placeUpdate, best_playerUpdate):
+    cursor = create_connection()
+    statement = """UPDATE TOURNAMENTS SET NAME = '{}', YEAR = '{}', WINNER = '{}', SECOND_PLACE = '{}', BEST_PLAYER = '{}' WHERE ID={} """.format(nameUpdate, yearUpdate, winnerUpdate, second_placeUpdate, best_playerUpdate, id)
+    cursor.execute(statement)
+    cursor.connection.commit()
+
+    close_connection(cursor)
+
 @app.route("/tournaments/", methods=['GET', 'POST'])
 def tournaments():
 
@@ -106,4 +114,16 @@ def tournaments():
 
         all_tournaments = get_tournaments()
         queriedTournaments = find_tournament(nameFind,yearFind,winnerFind,second_placeFind,best_playerFind)
+    elif 'update' in request.form:
+        ids = request.form.getlist('update')
+        for id in ids:
+            nameUpdate = request.form['nameUpdate']
+            yearUpdate = request.form['yearUpdate']
+            winnerUpdate = request.form['winnerUpdate']
+            second_placeUpdate = request.form['second_placeUpdate']
+            best_playerUpdate = request.form['best_playerUpdate']
+            update_tournament(id, nameUpdate, yearUpdate, winnerUpdate, second_placeUpdate, best_playerUpdate)
+
+        all_tournaments = get_tournaments()
+        queriedTournaments = find_tournament('?','?','?','?','?')
     return render_template("tournaments.html", tournaments=all_tournaments, tournamentsToShow=queriedTournaments)

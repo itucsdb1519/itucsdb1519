@@ -8,7 +8,7 @@
 <body>
 <a href="/"> Home Page </a>
 	<form action="/tournaments/" method="POST">
-	<h2>Search</h2>
+	<h2>Search and Update</h2>
 	<table>
 		<tr>
 			<th>Name</th>
@@ -42,11 +42,12 @@
 		{% for tournament in tournamentsToShow %}
 		<tr>
 
-			<td> {{tournament[1]}} </td>
-			<td> {{tournament[2]}} </td>
-			<td> {{tournament[3]}} </td>
-			<td> {{tournament[4]}} </td>
-			<td> {{tournament[5]}} </td>
+			<td> <input type="text" name="nameUpdate" value="{{tournament[1]}}"> </td>
+			<td> <input type="text" name="yearUpdate" value="{{tournament[2]}}"> </td>
+			<td> <input type="text" name="winnerUpdate" value="{{tournament[3]}}"> </td>
+			<td> <input type="text" name="second_placeUpdate" value="{{tournament[4]}}"> </td>
+			<td> <input type="text" name="best_playerUpdate" value="{{tournament[5]}}"> </td>
+			<td><input type="submit" name="update"value="{{tournament[0]}}" /></td>
 		</tr>
 		{% endfor %}
 	</table>
