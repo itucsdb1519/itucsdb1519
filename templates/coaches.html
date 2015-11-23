@@ -39,7 +39,6 @@
 			<th>Nationality</th>
 			<th>Birth Date</th>
 			<th>Current Team</th>
-			<th>Update Team</th>
 
 		</tr>
 		{% for coach in coaches %}
@@ -49,16 +48,18 @@
 			<td> <input type="text" name="gender_update{{coach[0]}}" value="{{coach[2]}}"> </td>
 			<td> <input type="text" name="nationality_update{{coach[0]}}" value="{{coach[3]}}"> </td>
 			<td> <input type="text" name="birth_date_update{{coach[0]}}" value="{{coach[4]}}"> </td>
-			<td> {{coach[5]}} </td>
 			<td><select name="current_team_update{{coach[0]}}">
 				{% for team in teams_select %}
-  					<option value="{{team[0]}}">{{team[1]}}</option>
+					{%if team[1] == coach[5] %}
+						<option selected="selected" value="{{team[0]}}">{{team[1]}}</option>
+  					{%else%}
+  						<option value="{{team[0]}}">{{team[1]}}</option>
+  					{%endif%}
   				{% endfor %}
 					</select></td>
 
 
 			<td><button type="submit" name="update" value="{{coach[0]}}" >Update</button></td>
-
 		</tr>
 		{% endfor %}
 	</table>
