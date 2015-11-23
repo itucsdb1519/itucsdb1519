@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+ <head>
+	<meta charset="utf-8" />
+	<title>Users</title>
+	<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<a href="/"> Home Page </a>
+	<h2>Users</h2>
+	<form action="/users/" method="POST">
+	<h3>Search</h3>
+	<table>
+		<tr>
+			<th>Username</th>
+			<th>Password</th>
+		</tr>
+		<tr>
+			<td> <input type="text" name="username_find" > </td>
+			<td> <input type="text" name="password_find" > </td>
+
+		</tr>
+	</table>
+	<input type="submit" name="find"value="Find" />
+	<input type="submit" name="showall"value="Show All" />
+
+	<br><br><br>
+	<table>
+		<tr>
+			<th>Delete</th>
+			<th>Username</th>
+			<th>Password</th>
+		</tr>
+		{% for user in users %}
+		<tr>
+			<td><input type="checkbox" name="users_to_delete"value="{{user[0]}}" /></td>
+			<td> <input type="text" name="username_update{{user[0]}}" value="{{user[1]}}"> </td>
+			<td> <input type="text" name="password_update{{user[0]}}" value="{{user[2]}}"> </td>
+			<td><button type="submit" name="update" value="{{user[0]}}" >Update</button></td>
+
+		</tr>
+		{% endfor %}
+	</table>
+		<input type="submit" name="delete"value="delete" />
+	<h3>Add New User</h3>
+
+		<table>
+			<tr>
+				<td>Username</td>
+				<td>Password</td>
+			</tr>
+			<tr>
+				<td> <input type="text" name="username" > </td>
+				<td> <input type="text" name="password" > </td>
+			</tr>
+		</table>
+		<input type="submit" name="add"value="add" />
+
+	</form>
+
+</body>
+</html>
