@@ -46,10 +46,10 @@ def uninitDb():
 
 @app.route('/initializeDatabase')
 def initDb():
-    coaches.create_table()
     players.create_table()
     tournaments.create_table()
     teams.create_table()
+    coaches.create_table()
     referees.create_table()
     users.create_table()
     matches.create_table()
