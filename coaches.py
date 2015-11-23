@@ -37,9 +37,9 @@ def get_coaches():
 
     return coaches
 
-def update_coach(id,new_team):
+def update_coach(id, name_update, gender_update, nationality_update, birth_date_update, current_team_update):
     cursor = create_connection()
-    statement = """UPDATE COACHES SET CURRENT_TEAM = '{}' WHERE ID = {}""".format(new_team,id)
+    statement = """UPDATE COACHES SET NAME = '{}', GENDER = '{}', NATIONALITY = '{}', BIRTH_DATE = '{}', CURRENT_TEAM = '{}' WHERE ID = {}""".format(name_update, gender_update, nationality_update, birth_date_update, current_team_update,id)
     cursor.execute(statement)
     cursor.connection.commit()
 
@@ -100,10 +100,15 @@ def coaches():
         all_coaches = get_coaches() # get all coaches
 
     elif 'update' in request.form:
-        ids = request.form.getlist('coaches_to_update')
+        ids = request.form.getlist('update')
         for id in ids:
-            new_team = request.form['new_team']
-            update_coach(id,new_team)
+            name_update = request.form['name_update'+id]
+            gender_update = request.form['gender_update'+id]
+            nationality_update = request.form['nationality_update'+id]
+            birth_date_update = request.form['birth_date_update'+id]
+            current_team_update = request.form['current_team_update'+id]
+
+            update_coach(id,name_update,gender_update,nationality_update,birth_date_update,current_team_update)
         all_coaches = get_coaches()
 
     elif 'find' in request.form:

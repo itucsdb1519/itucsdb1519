@@ -34,30 +34,26 @@
 	<table>
 		<tr>
 			<th>Delete</th>
-			<th>Update</th>
 			<th>Name</th>
 			<th>Gender</th>
 			<th>Nationality</th>
 			<th>Birth Date</th>
 			<th>Current Team</th>
-			<th>New Team</th>
 		</tr>
 		{% for coach in coaches %}
 		<tr>
 			<td><input type="checkbox" name="coaches_to_delete"value="{{coach[0]}}" /></td>
-			<td><input type="checkbox" name="coaches_to_update"value="{{coach[0]}}" /></td>
-			<td> {{coach[1]}} </td>
-			<td> {{coach[2]}} </td>
-			<td> {{coach[3]}} </td>
-			<td> {{coach[4]}} </td>
-			<td> {{coach[5]}} </td>
-			<td> <input type="text" name="new_team" > </td>
+			<td> <input type="text" name="name_update{{coach[0]}}" value="{{coach[1]}}"> </td>
+			<td> <input type="text" name="gender_update{{coach[0]}}" value="{{coach[2]}}"> </td>
+			<td> <input type="text" name="nationality_update{{coach[0]}}" value="{{coach[3]}}"> </td>
+			<td> <input type="text" name="birth_date_update{{coach[0]}}" value="{{coach[4]}}"> </td>
+			<td> <input type="text" name="current_team_update{{coach[0]}}" value="{{coach[5]}}"> </td>
+			<td><button type="submit" name="update" value="{{coach[0]}}" >Update</button></td>
 
 		</tr>
 		{% endfor %}
 	</table>
 		<input type="submit" name="delete"value="delete" />
-		<input type="submit" name="update"value="update" />
 	<h3>Add New Coach</h3>
 
 		<table>
