@@ -18,7 +18,9 @@ import tournaments
 import players
 import login
 import matches
-from store import Store
+from store import StoreTM
+from store import StoreP
+
 
 import technicmembers
 
@@ -46,15 +48,17 @@ def uninitDb():
 
 @app.route('/initializeDatabase')
 def initDb():
-    coaches.create_table()
-    players.create_table()
-    tournaments.create_table()
     teams.create_table()
+    coaches.create_table()
+    app.storePlayers = StoreP(app.config['dsn'])
+    app.storePlayers.createTable(app.config['dsn'])
+    tournaments.create_table()
     referees.create_table()
     login.create_table()
     matches.create_table()
-    app.store = Store(app.config['dsn'])
+    app.store = StoreTM(app.config['dsn'])
     app.store.createTable(app.config['dsn'])
+
     return render_template('home.html')
 
 @app.route('/')
