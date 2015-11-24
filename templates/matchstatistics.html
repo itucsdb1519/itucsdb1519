@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+ <head>
+	<meta charset="utf-8" />
+	<title>Match Statistics</title>
+	<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<a href="/"> Home Page </a>
+	<h2>Statistics</h2>
+	<form action="/matchstatistics/" method="POST">
+	<h3>Search</h3>
+	<table>
+		<tr>
+			<th>Home Team</th>
+			<th>Away Team</th>
+			<th>Match Date</th>
+			<th>Score</th>
+			<th>Referee</th>
+		</tr>
+		<tr>
+			<td> <input type="text" name="home_team_find" > </td>
+			<td> <input type="text" name="away_team_find" > </td>
+			<td> <input type="text" name="match_date_find" > </td>
+			<td> <input type="text" name="score_find" > </td>
+			<td> <input type="text" name="referee_find" > </td>
+
+		</tr>
+	</table>
+	<input type="submit" name="find"value="Find" />
+	<input type="submit" name="showall"value="Show All" />
+
+	<br><br><br>
+	<table>
+		<tr>
+			<th>Delete</th>
+			<th>Home Team</th>
+			<th>Away Team</th>
+			<th>Match Date</th>
+			<th>Score</th>
+			<th>Referee</th>
+
+		</tr>
+		{% for matchstatistic in matchstatistics %}
+		<tr>
+			<td><input type="checkbox" name="matchstatistics_to_delete"value="{{matchstatistic[0]}}" /></td>
+			<td> <input type="text" name="home_team_update{{matchstatistic[0]}}" value="{{matchstatistic[1]}}"> </td>
+			<td> <input type="text" name="away_team_update{{matchstatistic[0]}}" value="{{matchstatistic[2]}}"> </td>
+			<td> <input type="text" name="match_date_update{{matchstatistic[0]}}" value="{{matchstatistic[3]}}"> </td>
+			<td> <input type="text" name="score_update{{matchstatistic[0]}}" value="{{matchstatistic[4]}}"> </td>
+			<td><select name="referee_update{{matchstatistic[0]}}">
+				{% for referee in referees_select %}
+					{%if referee[1] == matchstatistic[5] %}
+						<option selected="selected" value="{{referee[0]}}">{{referee[1]}}</option>
+  					{%else%}
+  						<option value="{{referee[0]}}">{{referee[1]}}</option>
+  					{%endif%}
+  				{% endfor %}
+					</select></td>
+
+
+			<td><button type="submit" name="update" value="{{matchstatistic[0]}}" >Update</button></td>
+		</tr>
+		{% endfor %}
+	</table>
+		<input type="submit" name="delete"value="Delete" />
+	<h3>Add New Match</h3>
+
+		<table>
+			<tr>
+				<td>Home Team</td>
+				<td>Away Team</td>
+				<td>Match Date</td>
+				<td>Score</td>
+				<td>Referee</td>
+			</tr>
+			<tr>
+				<td> <input type="text" name="home_team" > </td>
+				<td> <input type="text" name="away_team" > </td>
+				<td> <input type="text" name="match_date" > </td>
+				<td> <input type="text" name="score" > </td>
+				<td><select name="referee">
+				{% for referee in referees_select %}
+  					<option value="{{referee[0]}}">{{referee[1]}}</option>
+  				{% endfor %}
+					</select></td>
+			</tr>
+		</table>
+		<input type="submit" name="add"value="Add" />
+
+	</form>
+
+</body>
+</html>
