@@ -71,7 +71,7 @@ class StoreP:
             cursor = connection.cursor()
             statement = """ CREATE TABLE PLAYERS (
             ID SERIAL PRIMARY KEY,
-            NAME VARCHAR(45) NOT NULL,
+            NAME VARCHAR(45),
             GENDER VARCHAR(6),
             NATION VARCHAR(45),
             BIRTHDATE VARCHAR(10),
