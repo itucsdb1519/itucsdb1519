@@ -16,8 +16,9 @@ import coaches
 import referees
 import tournaments
 import players
-import login
+import users
 import matches
+import matchstatistics
 from store import StoreTM
 from store import StoreP
 
@@ -39,7 +40,7 @@ def get_elephantsql_dsn(vcap_services):
 
 @app.route('/uninitializeDatabase')
 def uninitDb():
-    statement="""DROP TABLE MATCHES, PLAYERS, COACHES, REFEREES, TEAMS, TECHNICMEMBERS, TOURNAMENTS, USERS, MATCHSTATISTICS"""
+    statement="""DROP TABLE MATCHES, PLAYERS, COACHES, REFEREES, TEAMS, TOURNAMENTS, USERS, MATCHSTATISTICS, TECHNICMEMBERS"""
     cursor = create_connection()
     cursor.execute(statement)
     cursor.connection.commit()
@@ -54,7 +55,7 @@ def initDb():
     app.storePlayers.createTable(app.config['dsn'])
     tournaments.create_table()
     referees.create_table()
-    login.create_table()
+    users.create_table()
     matches.create_table()
     matchstatistics.create_table()
     app.store = StoreTM(app.config['dsn'])
