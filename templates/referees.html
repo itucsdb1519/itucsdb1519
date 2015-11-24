@@ -9,9 +9,32 @@
 <a href="/"> Home Page </a>
 	<h2>Referees</h2>
 	<form action="/referees/" method="POST">
+	<h3>Search</h3>
 	<table>
 		<tr>
-			<th>#</th>
+
+			<th>Name</th>
+			<th>Gender</th>
+			<th>Nationality</th>
+			<th>Birth Date</th>
+			<th>Times Match</th>
+		</tr>
+		<tr>
+			<td> <input type="text" name="name_find" > </td>
+			<td> <input type="text" name="gender_find" > </td>
+			<td> <input type="text" name="nationality_find" > </td>
+			<td> <input type="text" name="birth_date_find" > </td>
+			<td> <input type="text" name="times_match_find" > </td>
+
+		</tr>
+		</table>
+	<input type="submit" name="find"value="Find" />
+	<input type="submit" name="showall"value="Show All" />
+
+	<br><br><br>
+	<table>
+		<tr>
+			<th>Delete</th>
 			<th>Name</th>
 			<th>Gender</th>
 			<th>Nationality</th>
@@ -21,11 +44,12 @@
 		{% for referee in referees %}
 		<tr>
 			<td><input type="checkbox" name="referees_to_delete"value="{{referee[0]}}" /></td>
-			<td> {{referee[1]}} </td>
-			<td> {{referee[2]}} </td>
-			<td> {{referee[3]}} </td>
-			<td> {{referee[4]}} </td>
-			<td> {{referee[5]}} </td>
+			<td> <input type="text" name="name_update{{referee[0]}}" value="{{referee[1]}}"> </td>
+			<td> <input type="text" name="gender_update{{referee[0]}}" value="{{referee[2]}}"> </td>
+			<td> <input type="text" name="nationality_update{{referee[0]}}" value="{{referee[3]}}"> </td>
+			<td> <input type="text" name="birth_date_update{{referee[0]}}" value="{{referee[4]}}"> </td>
+			<td> <input type="text" name="times_match_update{{referee[0]}}" value="{{referee[5]}}"> </td>
+			<td><button type="submit" name="update" value="{{referee[0]}}" >Update</button></td>
 		</tr>
 		{% endfor %}
 	</table>
