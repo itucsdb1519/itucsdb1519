@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
  <head>
@@ -91,3 +92,63 @@
 
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html>
+ <head>
+	<meta charset="utf-8" />
+	<title>Teams</title>
+	<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<a href="/"> Home Page </a>
+	<h2>Teams</h2>
+	<form action="/teams/" method="POST">
+	<table>
+		<tr>
+			<th>#</th>
+			<th>Nation</th>
+			<th>Gender</th>
+			<th>Foundation Date</th>
+			<th>Player 1 Name</th>
+			<th>Player 2 Name</th>
+			<th>Times Won</th>
+		</tr>
+		{% for team in teams %}
+		<tr>
+			<td><input type="checkbox" name="teams_to_delete"value="{{team[0]}}" /></td>
+			<td> {{team[1]}} </td>
+			<td> {{team[2]}} </td>
+			<td> {{team[3]}} </td>
+			<td> {{team[4]}} </td>
+			<td> {{team[5]}} </td>
+			<td> {{team[6]}} </td>
+		</tr>
+		{% endfor %}
+	</table>
+		<input type="submit" name="delete" value="delete" />
+		
+	<h3>Add New Team</h3>
+	<table>
+		<tr>
+			<td>Nation</td>
+			<td>Gender</td>
+			<td>Foundation Date</td>
+			<td>Player 1 Name</td>
+			<td>Player 2 Name</td>
+			<td>Times Won</td>
+		</tr>
+		<tr>
+			<td> <input type="text" name="nation" > </td>
+			<td> <input type="text" name="gender" > </td>
+			<td> <input type="text" name="found_date" > </td>
+			<td> <input type="text" name="player1_name" > </td>
+			<td> <input type="text" name="player2_name" > </td>
+			<td> <input type="text" name="times_won" > </td>
+		</tr>
+	</table>
+		<input type="submit" name="add" value="add" />
+	</form>
+</body>
+</html>
+>>>>>>> ae87813d7cb381cd527a4b822087d3c9d71ddbe6
