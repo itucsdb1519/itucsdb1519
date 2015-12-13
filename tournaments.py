@@ -7,6 +7,7 @@ from config import app
 from config import create_connection, close_connection
 
 from store import StoreP
+from store import StoreTeam
 
 import psycopg2
 import players
@@ -108,8 +109,10 @@ def tournaments():
 
     #create_table()
     #allPlayers = players.get_players()
-    allTeams=teams.get_teams()
     dsn = app.config['dsn']
+    
+    app.storeT = StoreTeam(dsn)
+    allTeams = app.storeT.getAllTeams(dsn)
 
     app.store = StoreP(dsn)
     allPlayers = app.store.getAllPlayers(dsn)

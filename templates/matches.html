@@ -14,15 +14,13 @@
 			<th>Tournament</th>
 			<th>Team1</th>
 			<th>Team2</th>
-			<th>Winner</th>
-			<th>Date</th>
+			<th>Score</th>
 		</tr>
 		<tr>
 			<td> <input type="text" name="tournamentFind" > </td>
 			<td> <input type="text" name="team1Find" > </td>
 			<td> <input type="text" name="team2Find" > </td>
-			<td> <input type="text" name="winnerFind" > </td>
-			<td> <input type="text" name="dateFind" > </td>
+			<td> <input type="text" name="scoreFind" > </td>
 
 		</tr>
 	</table>
@@ -33,20 +31,36 @@
 	<table>
 		<tr>
 
-			<th>Tournament</th>
-			<th>Team1</th>
-			<th>Team2</th>
-			<th>Winner</th>
-			<th>Date</th>
+			<th>Current Tournament</th>
+			<th>New Tournament</th>
+			<th>Current Team1</th>
+			<th>New Team1</th>
+			<th>Current Team2</th>
+			<th>New Team2</th>
+			<th>Score</th>
 		</tr>
 		{% for match in matchesToShow %}
 		<tr>
 
-			<td> <input type="text" name="tournamentUpdate{{match[0]}}" value="{{match[1]}}"> </td>
-			<td> <input type="text" name="team1Update{{match[0]}}" value="{{match[2]}}"> </td>
-			<td> <input type="text" name="team2Update{{match[0]}}" value="{{match[3]}}"> </td>
-			<td> <input type="text" name="winnerUpdate{{match[0]}}" value="{{match[4]}}"> </td>
-			<td> <input type="text" name="dateUpdate{{match[0]}}" value="{{match[5]}}"> </td>
+			<td> {{match[1]}} </td>
+			<td><select name="tournamentUpdate{{match[0]}}">
+				{% for tournament in TournamentsSelect %}
+  					<option value="{{tournament[0]}}">{{tournament[1]}}</option>
+  				{% endfor %}
+					</select></td>
+			<td> {{match[2]}} </td>
+			<td><select name="team1Update{{match[0]}}">
+				{% for team in TeamsSelect %}
+  					<option value="{{team[0]}}">{{team[1]}}</option>
+  				{% endfor %}
+					</select></td>
+			<td> {{match[3]}} </td>
+			<td><select name="team2Update{{match[0]}}">
+				{% for team in TeamsSelect %}
+  					<option value="{{team[0]}}">{{team[1]}}</option>
+  				{% endfor %}
+					</select></td>
+			<td> <input type="text" name="scoreUpdate{{match[0]}}" value="{{match[4]}}"> </td>
 			<td><button type="submit" name="update" value="{{match[0]}}" >Update</button></td>
 		</tr>
 		{% endfor %}
@@ -61,8 +75,7 @@
 			<th>Tournament</th>
 			<th>Team1</th>
 			<th>Team2</th>
-			<th>Winner</th>
-			<th>Date</th>
+			<th>Score</th>
 		</tr>
 		{% for match in matches %}
 		<tr>
@@ -71,7 +84,6 @@
 			<td> {{match[2]}} </td>
 			<td> {{match[3]}} </td>
 			<td> {{match[4]}} </td>
-			<td> {{match[5]}} </td>
 		</tr>
 		{% endfor %}
 	</table>
@@ -83,15 +95,25 @@
 				<td>Tournament</td>
 				<td>Team1</td>
 				<td>Team2</td>
-				<td>Winner</td>
-				<td>Date</td>
+				<td>Score</td>
 			</tr>
 			<tr>
-				<td> <input type="text" name="tournament" > </td>
-				<td> <input type="text" name="team1" > </td>
-				<td> <input type="text" name="team2" > </td>
-				<td> <input type="text" name="winner" > </td>
-				<td> <input type="text" name="date" > </td>
+				<td> <select name="tournament" >
+				{% for tournament in TournamentsSelect %}
+  					<option value="{{tournament[0]}}">{{tournament[1]}}</option>
+  				{% endfor %}
+  				</select> </td>
+				<td> <select name="team1" >
+				{% for team in TeamsSelect %}
+  					<option value="{{team[0]}}">{{team[1]}}</option>
+  				{% endfor %}
+  				</select> </td>
+				<td> <select name="team2" >
+				{% for team in TeamsSelect %}
+  					<option value="{{team[0]}}">{{team[1]}}</option>
+  				{% endfor %}
+  				</select> </td>
+				<td> <input type="text" name="score" > </td>
 
 			</tr>
 		</table>
