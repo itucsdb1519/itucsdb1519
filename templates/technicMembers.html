@@ -12,8 +12,18 @@
 	<h2> Find technic members </h2>
 	<table>
 		<tr>
+			<td>Name</td>
+			<td>Gender</td>
+			<td>Nation</td>
+			<td>Birth Date</td>
+			<td>Team</td>
+		</tr>
+		<tr>
 			<td> <input type="text" name="nameToFind" ></td>
 			<td> <input type="text" name="genderToFind" ></td>
+			<td> <input type="text" name="nationToFind" ></td>
+			<td> <input type="text" name="birthDateToFind" ></td>
+			<td> <input type="text" name="coachToFind" ></td>
 			<td> <input type="submit" name="find" value="find" /></td>
 		</tr>
 
@@ -26,12 +36,18 @@
 			<th>#</th>
 			<th>Name</th>
 			<th>Gender</th>
+			<th>Nation</th>
+			<th>Birth Date</th>
+			<th>Coach</th>
 		</tr>
 		{% for tm in tms %}
 		<tr>
 			<td><input type="checkbox" name="tms"value="{{tm[0]}}" /></td>
 			<td> {{tm[1]}} </td>
 			<td> {{tm[2]}} </td>
+			<td> {{tm[3]}} </td>
+			<td> {{tm[4]}} </td>
+			<td> {{tm[5]}} </td>
 
 		</tr>
 		{% endfor %}
@@ -43,10 +59,20 @@
 		<tr>
 			<td>Name</td>
 			<td>Gender</td>
+			<td>Nation</td>
+			<td>Birth Date</td>
+			<td>Coach</td>
 		</tr>
 		<tr>
 			<td> <input type="text" name="nameToUpdate" > </td>
 			<td> <input type="text" name="genderToUpdate" > </td>
+			<td> <input type="text" name="nationToUpdate" > </td>
+			<td> <input type="text" name="birthDateToUpdate" > </td>
+			<td><select name = "coachToUpdate" >
+				{% for coach in coaches %}
+					<option value="{{coach[0]}}">{{coach[1]}}</option>
+				{% endfor %}
+			</select></td>
 		</tr>
 	</table>
 		<input type="submit" name="update" value="update" />
@@ -58,10 +84,20 @@
 			<tr>
 				<td>Name</td>
 				<td>Gender</td>
+				<td>Nation</td>
+				<td>Birth Date</td>
+				<td>Coach</td>
 			</tr>
 			<tr>
 				<td> <input type="text" name="nameToAdd" > </td>
 				<td> <input type="text" name="genderToAdd" > </td>
+				<td> <input type="text" name="nationToAdd" > </td>
+				<td> <input type="text" name="birthDateToAdd" > </td>
+				<td><select name = "coachToAdd" >
+				{% for coach in coaches %}
+					<option value="{{coach[0]}}">{{coach[1]}}</option>
+				{% endfor %}
+			</select></td>
 
 			</tr>
 		</table>

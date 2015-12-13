@@ -8,6 +8,8 @@ from technicmember import tm
 from store import StoreTM
 import psycopg2 as dbapi2
 
+import coaches
+
 
 
 
@@ -18,6 +20,8 @@ def technicMembers():
     dsn = app.config['dsn']
 
     app.store = StoreTM(dsn)
+
+    allCoaches = coaches.get_coaches()
 
     if request.method == 'GET':
         allTms = app.store.getAllTms(dsn)
@@ -32,7 +36,10 @@ def technicMembers():
     elif 'add' in request.form:
         name = request.form['nameToAdd']
         gender = request.form['genderToAdd']
-        newTm = tm(name, gender)
+        nation = request.form['nationToAdd']
+        birthDate = request.form['birthDateToAdd']
+        coach = request.form['coachToAdd']
+        newTm = tm(name, gender, nation, birthDate, coach)
         app.store.addTm(newTm, dsn)
         allTms = app.store.getAllTms(dsn)
 
@@ -41,18 +48,24 @@ def technicMembers():
         id = ids[0]
         name = request.form['nameToUpdate']
         gender = request.form['genderToUpdate']
-        newTm = tm(name, gender)
+        nation = request.form['nationToUpdate']
+        birthDate = request.form['birthDateToUpdate']
+        coach = request.form['coachToUpdate']
+        newTm = tm(name, gender, nation, birthDate, coach)
         app.store.updateTm(newTm, id, dsn)
         allTms = app.store.getAllTms(dsn)
 
     elif 'find' in request.form:
         name = request.form['nameToFind']
         gender = request.form['genderToFind']
-        findTm = tm(name, gender)
+        nation = request.form['nationToFind']
+        birthDate = request.form['birthDateToFind']
+        coach = request.form['coachToFind']
+        findTm = tm(name, gender, nation, birthDate, coach)
         allTms = app.store.selectTms(findTm, dsn)
 
 
-    return render_template('technicMembers.html', tms = allTms )
+    return render_template('technicMembers.html', tms = allTms, coaches = allCoaches )
 
 
 

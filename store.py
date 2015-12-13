@@ -21,7 +21,10 @@ class StoreTM:
             statement = """ CREATE TABLE TECHNICMEMBERS (
             ID SERIAL PRIMARY KEY,
             NAME VARCHAR(45),
-            GENDER VARCHAR(6)
+            GENDER VARCHAR(6),
+            NATION VARCHAR(45),
+            BIRTHDATE VARCHAR(10),
+            COACH INTEGER REFERENCES COACHES ON DELETE CASCADE ON UPDATE CASCADE
             )"""
             cursor.execute(statement)
             connection.commit()
@@ -34,12 +37,12 @@ class StoreTM:
     def addTm(self, tm, dsn):
         with dbapi2.connect(dsn) as connection:
             with connection.cursor() as cursor:
-                cursor.execute("INSERT INTO TECHNICMEMBERS (NAME, GENDER) VALUES(%s, %s)", (tm.name, tm.gender))
+                cursor.execute("INSERT INTO TECHNICMEMBERS (NAME, GENDER, NATION, BIRTHDATE, COACH) VALUES(%s, %s, %s, %s, %s)", (tm.name, tm.gender, tm.nation, tm.birthDate, tm.coach))
 
     def updateTm(self, tm, id, dsn):
         with dbapi2.connect(dsn) as connection:
             with connection.cursor() as cursor:
-                query = """UPDATE TECHNICMEMBERS SET NAME= '{}', GENDER = '{}' WHERE ID = {} """.format(tm.name, tm.gender, id)
+                query = """UPDATE TECHNICMEMBERS SET NAME= '{}', GENDER = '{}', NATION = '{}', BIRTHDATE = '{}', COACH = '{}' WHERE ID = {} """.format(tm.name, tm.gender, tm.nation, tm.birthDate, tm.coach, id)
                 cursor.execute(query)
 
     def deleteTm(self, id, dsn):
@@ -51,7 +54,11 @@ class StoreTM:
     def selectTms(self, tm, dsn):
         with dbapi2.connect(dsn) as connection:
             with connection.cursor() as cursor:
-                query = """SELECT * FROM TECHNICMEMBERS WHERE(NAME LIKE  '{}%' ) AND (GENDER LIKE '{}%' )""".format(tm.name, tm.gender)
+                query = """SELECT TECHNICMEMBERS.ID, TECHNICMEMBERS.NAME, TECHNICMEMBERS.GENDER, TECHNICMEMBERS.NATION, TECHNICMEMBERS.BIRTHDATE, COACH.NAME
+                FROM TECHNICMEMBERS INNER JOIN COACHES ON COACHES.ID = TECHNICMEMBERS.COACH
+                WHERE(TECHNICMEMBERS.NAME LIKE  '{}%' ) AND (TECHNICMEMBERS.GENDER LIKE '{}%' ) AND
+                (TECHNICMEMBERS.NATION LIKE '{}%' ) AND (TECHNICMEMBERS.BIRTHDATE LIKE '{}%' ) AND
+                (COACH.NAME LIKE '{}%' ) """.format(tm.name, tm.gender, tm.nation, tm.birthDate, tm.coach)
                 cursor.execute(query)
                 tms = cursor.fetchall()
                 return tms
@@ -59,7 +66,7 @@ class StoreTM:
     def getAllTms (self, dsn):
         with dbapi2.connect(dsn) as connection:
             with connection.cursor() as cursor:
-                query = """ SELECT * FROM TECHNICMEMBERS """
+                query = """ SELECT TECHNICMEMBERS.ID, TECHNICMEMBERS.NAME, TECHNICMEMBERS.GENDER, TECHNICMEMBERS.NATION, TECHNICMEMBERS.BIRTHDATE, COACHES.NAME FROM TECHNICMEMBERS INNER JOIN COACHES ON COACHES.ID = TECHNICMEMBERS.COACH """
                 cursor.execute(query)
                 tms = cursor.fetchall()
                 return tms
