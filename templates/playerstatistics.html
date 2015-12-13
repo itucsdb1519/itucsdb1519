@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+ <head>
+	<meta charset="utf-8" />
+	<title>Player Statistics</title>
+	<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<a href="/"> Home Page </a>
+	<h2>Player Statistics</h2>
+	<form action="/playerstatistics/" method="POST">
+	<h3>Search</h3>
+	<table>
+		<tr>
+			<th>Player</th>
+			<th>Matches Played</th>
+			<th>Matches Won</th>
+			<th>Win Rate</th>
+			<th>Average Score</th>
+		</tr>
+		<tr>
+			<td> <input type="text" name="player_find" > </td>
+			<td> <input type="text" name="matches_played_find" > </td>
+			<td> <input type="text" name="matches_won_find" > </td>
+			<td> <input type="text" name="win_rate_find" > </td>
+			<td> <input type="text" name="average_score_find" > </td>
+
+		</tr>
+	</table>
+	<input type="submit" name="find"value="Find" />
+	<input type="submit" name="showall"value="Show All" />
+
+	<br><br><br>
+	<table>
+		<tr>
+			<th>Delete</th>
+			<th>Player</th>
+			<th>Matches Played</th>
+			<th>Matches Won</th>
+			<th>Win Rate</th>
+			<th>Average Score</th>
+
+		</tr>
+		{% for playerstatistic in playerstatistics %}
+		<tr>
+			<td><input type="checkbox" name="playerstatistics_to_delete"value="{{playerstatistic[0]}}" /></td>
+			<td><select name="player_update{{playerstatistic[0]}}">
+				{% for player in players_select %}
+					{%if player[1] == playerstatistic[5] %}
+						<option selected="selected" value="{{player[0]}}">{{player[1]}}</option>
+  					{%else%}
+  						<option value="{{player[0]}}">{{player[1]}}</option>
+  					{%endif%}
+  				{% endfor %}
+					</select></td>
+
+			<td> <input type="text" name="matches_played_update{{playerstatistic[0]}}" value="{{playerstatistic[1]}}"> </td>
+			<td> <input type="text" name="matches_won_update{{playerstatistic[0]}}" value="{{playerstatistic[2]}}"> </td>
+			<td> <input type="text" name="win_rate_update{{playerstatistic[0]}}" value="{{playerstatistic[3]}}"> </td>
+			<td> <input type="text" name="average_score_update{{playerstatistic[0]}}" value="{{playerstatistic[4]}}"> </td>
+			<td><button type="submit" name="update" value="{{playerstatistic[0]}}" >Update</button></td>
+		</tr>
+		{% endfor %}
+	</table>
+		<input type="submit" name="delete"value="Delete" />
+	<h3>Add New Player</h3>
+
+		<table>
+			<tr>
+				<td>Player</td>
+				<td>Matches Played</td>
+				<td>Matches Won</td>
+				<td>Win Rate</td>
+				<td>Average Score</td>
+
+			</tr>
+			<tr>
+				<td><select name="player">
+				{% for player in players_select %}
+  					<option value="{{player[0]}}">{{player[1]}}</option>
+  				{% endfor %}
+					</select></td>
+
+				<td> <input type="text" name="matches_played" > </td>
+				<td> <input type="text" name="matches_won" > </td>
+				<td> <input type="text" name="win_rate" > </td>
+				<td> <input type="text" name="average_score" > </td>
+			</tr>
+		</table>
+		<input type="submit" name="add"value="Add" />
+
+	</form>
+
+</body>
+</html>
