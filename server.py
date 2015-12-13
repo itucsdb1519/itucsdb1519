@@ -16,17 +16,19 @@ import coaches
 import referees
 import tournaments
 import players
+import teams
 import users
 import matches
 import matchstatistics
 from store import StoreTM
 from store import StoreP
+from store import StoreTeam
 
 
 import technicmembers
 
 
-import teams
+
 
 def get_elephantsql_dsn(vcap_services):
     """Returns the data source name for ElephantSQL."""
@@ -49,10 +51,13 @@ def uninitDb():
 
 @app.route('/initializeDatabase')
 def initDb():
-    teams.create_table()
+    app.storeTeams = StoreTeam(app.config['dsn'])
+    app.storeTeams.createTable(app.config['dsn'])
+    app.storeTeams.createInitTeams(app.config['dsn'])
     coaches.create_table()
     app.storePlayers = StoreP(app.config['dsn'])
     app.storePlayers.createTable(app.config['dsn'])
+    app.storePlayers.createInitPlayers(app.config['dsn'])
     tournaments.create_table()
     referees.create_table()
     users.create_table()

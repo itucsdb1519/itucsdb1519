@@ -6,8 +6,9 @@ from flask import url_for
 from config import app
 from player import player
 from store import StoreP
+from store import StoreTeam
 import psycopg2 as dbapi2
-import teams
+#import teams
 
 
 
@@ -20,7 +21,8 @@ def players():
 
     app.store = StoreP(dsn)
 
-    allTeams = teams.get_teams()
+    app.storeT = StoreTeam(dsn)
+    allTeams = app.storeT.getAllTeams(dsn)
 
     if request.method == 'GET':
         allPlayers = app.store.getAllPlayers(dsn)

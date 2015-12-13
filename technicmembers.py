@@ -12,7 +12,6 @@ import psycopg2 as dbapi2
 
 
 
-
 @app.route('/technicMembers', methods = ['GET', 'POST'])
 def technicMembers():
 
