@@ -2,58 +2,107 @@
 <html>
  <head>
 	<meta charset="utf-8" />
-	<title>players</title>
+	<title> players </title>
 	<link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
 <a href="/"> Home Page </a>
-	<h2>players</h2>
+	<h1> Players </h1>
 	<form action="/players" method="POST">
+	<h2> Find players </h2>
+	<table>
+		<tr>
+			<td>Name</td>
+			<td>Gender</td>
+			<td>Nation</td>
+			<td>Birth Date</td>
+			<td>Team</td>
+		</tr>
+		<tr>
+			<td> <input type="text" name="nameToFind" ></td>
+			<td> <input type="text" name="genderToFind" ></td>
+			<td> <input type="text" name="nationToFind" ></td>
+			<td> <input type="text" name="birthDateToFind" ></td>
+			<td> <input type="text" name="teamToFind" ></td>
+			<td> <input type="submit" name="find" value="find"/> </td>
+		</tr>
+
+	</table>
+
+	<br/>
+
+	<h2>Players Table</h2>
 	<table>
 		<tr>
 			<th>#</th>
 			<th>Name</th>
 			<th>Gender</th>
-			<th>Nationality</th>
+			<th>Nation</th>
 			<th>Birth Date</th>
-			<th>Current Team</th>
-			<th>Times Won</th>
+			<th>Team</th>
 		</tr>
 		{% for player in players %}
 		<tr>
-			<td><input type="checkbox" name="players_to_delete"value="{{player[0]}}" /></td>
+			<td><input type="checkbox" name="players"value="{{player[0]}}" /></td>
 			<td> {{player[1]}} </td>
 			<td> {{player[2]}} </td>
 			<td> {{player[3]}} </td>
 			<td> {{player[4]}} </td>
 			<td> {{player[5]}} </td>
-			<td> {{player[6]}} </td>
+
 		</tr>
 		{% endfor %}
 	</table>
-		<input type="submit" name="delete"value="delete" />
-	<h3>Add New player</h3>
+		<input type="submit" name="delete" value="click to delete selected players" />
+	<br/> </br>
+
+	<h2>Update Selected Player</h2>
+	<table>
+		<tr>
+			<td>Name</td>
+			<td>Gender</td>
+			<td>Nation</td>
+			<td>Birth Date</td>
+			<td>Team</td>
+		</tr>
+		<tr>
+			<td> <input type="text" name="nameToUpdate" > </td>
+			<td> <input type="text" name="genderToUpdate" > </td>
+			<td> <input type="text" name="nationToUpdate" > </td>
+			<td> <input type="text" name="birthDateToUpdate" > </td>
+			<td><select name = "teamToUpdate" >
+				{% for team in teams %}
+					<option value="{{team[0]}}">{{team[1]}}</option>
+				{% endfor %}
+			</select></td>
+		</tr>
+	</table>
+		<input type="submit" name="update" value="update" />
+
+
+	<h2>Add New Player</h2>
 
 		<table>
 			<tr>
 				<td>Name</td>
 				<td>Gender</td>
-				<td>Nationality</td>
+				<td>Nation</td>
 				<td>Birth Date</td>
-				<td>Current Team</td>
-				<td>Times Won</td>
+				<td>Team</td>
 			</tr>
 			<tr>
-				<td> <input type="text" name="name" > </td>
-				<td> <input type="text" name="gender" > </td>
-				<td> <input type="text" name="nationality" > </td>
-				<td> <input type="text" name="birth_date" > </td>
-				<td> <input type="text" name="current_team" > </td>
-				<td> <input type="text" name="times_won" > </td>
-
+				<td> <input type="text" name="nameToAdd" > </td>
+				<td> <input type="text" name="genderToAdd" > </td>
+				<td> <input type="text" name="nationToAdd" > </td>
+				<td> <input type="text" name="birthDateToAdd" > </td>
+				<td><select name = "teamToAdd" >
+				{% for team in teams %}
+					<option value="{{team[0]}}">{{team[1]}}</option>
+				{% endfor %}
+			</select></td>
 			</tr>
 		</table>
-		<input type="submit" name="add"value="add" />
+		<input type="submit" name="add" value="add" />
 
 	</form>
 

@@ -5,7 +5,7 @@ from flask import url_for
 
 from config import app
 from technicmember import tm
-from store import Store
+from store import StoreTM
 import psycopg2 as dbapi2
 
 
@@ -18,8 +18,7 @@ def technicMembers():
 
     dsn = app.config['dsn']
 
-    app.store = Store(dsn)
-    #app.store.createTable(dsn)
+    app.store = StoreTM(dsn)
 
     if request.method == 'GET':
         allTms = app.store.getAllTms(dsn)

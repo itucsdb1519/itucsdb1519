@@ -5,6 +5,9 @@ from flask import render_template
 
 from config import app
 from config import create_connection, close_connection
+
+from store import StoreP
+
 import psycopg2
 import players
 
@@ -104,7 +107,11 @@ def findInJointTables(nameFind, yearFind, winnerFind, second_placeFind, best_pla
 def tournaments():
 
     #create_table()
-    allPlayers = players.get_players()
+    #allPlayers = players.get_players()
+    dsn = app.config['dsn']
+
+    app.store = StoreP(dsn)
+    allPlayers = app.store.getAllPlayers(dsn)
 
     if request.method == 'GET':
         #all_tournaments = get_tournaments() # get all tournaments
