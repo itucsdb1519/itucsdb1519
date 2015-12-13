@@ -7,6 +7,7 @@ from config import app
 from config import create_connection, close_connection
 import psycopg2
 import teams
+from store import StoreTeam
 
 
 def create_table():
@@ -89,8 +90,10 @@ def join_tables():
 
 @app.route("/coaches/", methods=['GET', 'POST'])
 def coaches():
+    dsn = app.config['dsn']
 
-    all_teams = teams.get_teams()
+    app.store = StoreTeam(dsn)
+    all_teams = app.store.getAllTeams(dsn)
 
     if request.method == 'GET':
         all_coaches = join_tables()
