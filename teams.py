@@ -12,7 +12,7 @@ import psycopg2 as dbapi2
 
 
 
-@app.route('/teams/', methods = ['GET', 'POST'])
+@app.route('/teams', methods = ['GET', 'POST'])
 def teams():
 
     dsn = app.config['dsn']
