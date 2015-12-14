@@ -5,8 +5,10 @@ from flask import render_template
 
 from config import app
 from config import create_connection, close_connection
+from store import StoreTeam
 import psycopg2
 import referees
+import teams
 
 
 def create_table():
@@ -14,8 +16,8 @@ def create_table():
     try:
         statement = """ CREATE TABLE MATCHSTATISTICS(
         ID SERIAL PRIMARY KEY,
-        HOME_TEAM VARCHAR(45),
-        AWAY_TEAM VARCHAR(6),
+        HOME_TEAM INTEGER REFERENCES TEAMS ON DELETE CASCADE ON UPDATE CASCADE,
+        AWAY_TEAM INTEGER REFERENCES TEAMS ON DELETE CASCADE ON UPDATE CASCADE,
         MATCH_DATE VARCHAR(45),
         SCORE  VARCHAR(10),
         REFEREE INTEGER REFERENCES REFEREES ON DELETE CASCADE ON UPDATE CASCADE
@@ -47,7 +49,7 @@ def update_matchstatistic(id, home_team_update, away_team_update, match_date_upd
     close_connection(cursor)
 
 def find_matchstatistic(home_team_find, away_team_find, match_date_find, score_find, referee_find):
-    statement= """ SELECT MATCHSTATISTICS.ID, HOME_TEAM, AWAY_TEAM, MATCH_DATE, SCORE, REFEREE FROM MATCHSTATISTICS INNER JOIN REFEREES ON REFEREES.ID=MATCHSTATISTICS.REFEREE WHERE(HOME_TEAM LIKE  '{}%' ) AND (AWAY_TEAM LIKE '{}%' ) AND (MATCH_DATE LIKE '{}%' ) AND (SCORE LIKE '{}%' ) AND (REFEREES.NAME LIKE '{}%' )""".format(home_team_find, away_team_find, match_date_find, score_find, referee_find)
+    statement= """ SELECT MATCHSTATISTICS.ID, t1.NATION, t2.NATION, MATCH_DATE, SCORE, REFEREES.NAME FROM MATCHSTATISTICS INNER JOIN REFEREES ON REFEREES.ID=MATCHSTATISTICS.REFEREE INNER JOIN TEAMS t1 ON t1.ID=MATCHSTATISTICS.HOME_TEAM INNER JOIN TEAMS t2 ON t2.ID=MATCHSTATISTICS.AWAY_TEAM  WHERE(t1.NATION LIKE  '{}%' ) AND (t2.NATION LIKE '{}%' ) AND (MATCH_DATE LIKE '{}%' ) AND (SCORE LIKE '{}%' ) AND (REFEREES.NAME LIKE '{}%' )""".format(home_team_find, away_team_find, match_date_find, score_find, referee_find)
 
     cursor = create_connection()
     cursor.execute(statement)
@@ -78,7 +80,7 @@ def delete_matchstatistic(id):
 
 def join_tables():
     cursor = create_connection()
-    statement= """ SELECT MATCHSTATISTICS.ID, HOME_TEAM, AWAY_TEAM, MATCH_DATE, SCORE, REFEREES.NAME FROM MATCHSTATISTICS INNER JOIN REFEREES ON REFEREES.ID=MATCHSTATISTICS.REFEREE """
+    statement= """ SELECT MATCHSTATISTICS.ID, t1.NATION, t2.NATION, MATCH_DATE, SCORE, REFEREES.NAME FROM MATCHSTATISTICS INNER JOIN REFEREES ON REFEREES.ID=MATCHSTATISTICS.REFEREE INNER JOIN TEAMS t1 ON t1.ID=MATCHSTATISTICS.HOME_TEAM INNER JOIN TEAMS t2 ON t2.ID=MATCHSTATISTICS.AWAY_TEAM"""
     cursor.execute(statement)
     matchstatistics = cursor.fetchall()
     cursor.connection.commit()
@@ -91,6 +93,10 @@ def join_tables():
 def matchstatistics():
 
     all_referees = referees.get_referees()
+    dsn = app.config['dsn']
+
+    app.storeT = StoreTeam(dsn)
+    allTeams = app.storeT.getAllTeams(dsn)
 
     if request.method == 'GET':
         all_matchstatistics = join_tables()
@@ -141,4 +147,4 @@ def matchstatistics():
 
         all_matchstatistics = join_tables()
 
-    return render_template("matchstatistics.html", matchstatistics=all_matchstatistics, referees_select=all_referees)
+    return render_template("matchstatistics.html", matchstatistics=all_matchstatistics, referees_select=all_referees, TeamsSelect=allTeams)

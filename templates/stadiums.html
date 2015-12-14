@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+ <head>
+	<meta charset="utf-8" />
+	<title>Stadiums</title>
+	<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<a href="/"> Home Page </a>
+	<h2>Stadiums</h2>
+	<form action="/stadiums/" method="POST">
+	<h3>Search</h3>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Capacity</th>
+			<th>City</th>
+			<th>Country</th>
+		</tr>
+		<tr>
+			<td> <input type="text" name="name_find" > </td>
+			<td> <input type="text" name="capacity_find" > </td>
+			<td> <input type="text" name="city_find" > </td>
+			<td> <input type="text" name="country_find" > </td>
+
+		</tr>
+	</table>
+	<input type="submit" name="find"value="Find" />
+	<input type="submit" name="showall"value="Show All" />
+
+	<br><br><br>
+	<table>
+		<tr>
+			<th>Delete</th>
+			<th>Name</th>
+			<th>Capacity</th>
+			<th>City</th>
+			<th>Country</th>
+
+		</tr>
+		{% for stadium in stadiums %}
+		<tr>
+			<td><input type="checkbox" name="stadiums_to_delete"value="{{stadium[0]}}" /></td>
+			<td> <input type="text" name="name_update{{stadium[0]}}" value="{{stadium[1]}}"> </td>
+			<td> <input type="text" name="capacity_update{{stadium[0]}}" value="{{stadium[2]}}"> </td>
+			<td> <input type="text" name="city_update{{stadium[0]}}" value="{{stadium[3]}}"> </td>
+			<td><select name="country_update{{stadium[0]}}">
+				{% for team in teams_select %}
+					{%if team[1] == stadium[4] %}
+						<option selected="selected" value="{{team[0]}}">{{team[1]}}</option>
+  					{%else%}
+  						<option value="{{team[0]}}">{{team[1]}}</option>
+  					{%endif%}
+  				{% endfor %}
+					</select></td>
+
+
+			<td><button type="submit" name="update" value="{{stadium[0]}}" >Update</button></td>
+		</tr>
+		{% endfor %}
+	</table>
+		<input type="submit" name="delete"value="Delete" />
+	<h3>Add New Stadium</h3>
+
+		<table>
+			<tr>
+				<td>Name</td>
+				<td>Capacity</td>
+				<td>City</td>
+				<td>Country</td>
+			</tr>
+			<tr>
+				<td> <input type="text" name="name" > </td>
+				<td> <input type="text" name="capacity" > </td>
+				<td> <input type="text" name="city" > </td>
+				<td><select name="country">
+				{% for team in teams_select %}
+  					<option value="{{team[0]}}">{{team[1]}}</option>
+  				{% endfor %}
+					</select></td>
+			</tr>
+		</table>
+		<input type="submit" name="add"value="Add" />
+
+	</form>
+
+</body>
+</html>

@@ -21,6 +21,8 @@ import users
 import matches
 import matchstatistics
 import playerstatistics
+import stadiums
+
 from store import StoreTM
 from store import StoreP
 from store import StoreTeam
@@ -56,6 +58,7 @@ def initDb():
     app.storeTeams.createTable(app.config['dsn'])
     app.storeTeams.createInitTeams(app.config['dsn'])
     coaches.create_table()
+    stadiums.create_table()
     app.storePlayers = StoreP(app.config['dsn'])
     app.storePlayers.createTable(app.config['dsn'])
     app.storePlayers.createInitPlayers(app.config['dsn'])
