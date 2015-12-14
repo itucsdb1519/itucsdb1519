@@ -1,36 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Home</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-  </head>
-  <body>
-
-    <h1> Table Tennis Home Page </h1>
-
-	<ul>
-	 <a href="/initializeDatabase"> Initialize Database </a>
-	 <br><a href="/uninitializeDatabase"> Uninitialize Database </a>
-	 <br><br><br><li><a href="/users"> Users </a></li>
-	 <li><a href="/referees"> Referees </a></li>
-	 <li><a href="/coaches"> Coaches </a></li>
-	 <li><a href="/players"> Players </a></li>
-	 <li><a href="/teams"> Teams </a></li>
-	 <li><a href="/tournaments"> Tournaments </a></li>
-	 <li><a href="/technicMembers"> Technic Members </a>
-	 <li><a href="/matches"> Matches </a></li>
-	 <li><a href="/matchstatistics"> Match Statistics</a></li>
-	  <li><a href="/playerstatistics"> Player Statistics</a></li>
-	  <li><a href="/stadiums"> Stadiums</a></li>
-	</ul>
-
-
-
-
-     <footer>
-      <div id="datetime">{{ current_time }}</div>
-    </footer>
-  </body>
-</html>
-
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="/static/style.css" />
+<p> <a href="/"><img src="static/tabletennis.jpg" width="1050" height="630"></p>
+{% endblock %}
