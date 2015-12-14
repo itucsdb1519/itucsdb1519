@@ -28,6 +28,13 @@ def create_table():
     finally:
         cursor.connection.close()
 
+def create_init_referees():
+
+    add_new_referee('chan', 'male', 'china', '1974', '4')
+    add_new_referee('kim', 'male', 'japan', '1978', '5')
+    add_new_referee('cho', 'female', 'china', '1976', '3')
+    add_new_referee('alex', 'male', 'brazil', '1982', '2')
+
 def get_referees():
     cursor = create_connection()
 

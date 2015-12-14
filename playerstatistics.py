@@ -28,6 +28,11 @@ def create_table():
     finally:
         close_connection(cursor)
 
+def create_init_playerstatistics():
+    add_new_playerstatistic(2, 3, 2.3, 1.4, 1)
+    add_new_playerstatistic(4, 2, 3.7, 1.7, 2)
+    add_new_playerstatistic(2, 3, 2.3, 1.2, 3)
+
 
 def get_playerstatistics():
     cursor = create_connection()

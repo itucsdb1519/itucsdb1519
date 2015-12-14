@@ -29,6 +29,12 @@ def create_table():
     finally:
         close_connection(cursor)
 
+def create_init_matchstatistics():
+    add_new_matchstatistic(1, 2, '12-10-2014', '4-3', 1)
+    add_new_matchstatistic(3, 2, '21-03-2015', '7-1', 2)
+    add_new_matchstatistic(4, 1, '07-06-2014', '6-2', 2)
+
+
 
 def get_matchstatistics():
     cursor = create_connection()

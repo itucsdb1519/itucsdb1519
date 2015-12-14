@@ -23,6 +23,11 @@ def create_table():
     finally:
         close_connection(cursor)
 
+def create_init_users():
+    add_new_user('hasan', 'hasan')
+    add_new_user('firat', 'firat')
+    add_new_user('ahmet', 'ahmet')
+    add_new_user('alican', 'alican')
 
 def get_users():
     cursor = create_connection()

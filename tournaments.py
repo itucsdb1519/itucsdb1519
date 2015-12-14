@@ -33,6 +33,13 @@ def create_table():
     finally:
         cursor.connection.close()
 
+def create_init_tournaments():
+
+    add_new_tournament('World Cup', '2015', 1, 1)
+    add_new_tournament('World Cup', '2014', 2, 3)
+    add_new_tournament('World Cup', '2013', 3, 2)
+
+
 def get_tournaments():
     cursor = create_connection()
 
@@ -110,7 +117,7 @@ def tournaments():
     #create_table()
     #allPlayers = players.get_players()
     dsn = app.config['dsn']
-    
+
     app.storeT = StoreTeam(dsn)
     allTeams = app.storeT.getAllTeams(dsn)
 

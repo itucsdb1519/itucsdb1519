@@ -31,6 +31,15 @@ def create_table():
     finally:
         cursor.connection.close()
 
+
+def create_init_matches():
+
+    add_new_match(1, 1, 2, '5-3')
+    add_new_match(1, 3, 4, '4-2')
+    add_new_match(1, 3, 2, '2-6')
+
+
+
 def get_matches():
     cursor = create_connection()
 
@@ -79,7 +88,7 @@ def update_match(id, tournamentUpdate, team1Update, team2Update, scoreUpdate):
     cursor.connection.commit()
 
     close_connection(cursor)
-    
+
 def showJointTables():
     cursor = create_connection()
     statement= """ SELECT MATCHES.ID, TOURNAMENTS.NAME, t1.NATION, t2.NATION, MATCHES.SCORE FROM MATCHES INNER JOIN TOURNAMENTS ON TOURNAMENTS.ID=MATCHES.TOURNAMENT INNER JOIN TEAMS t1 ON t1.ID = MATCHES.TEAM1 INNER JOIN TEAMS t2 ON t2.ID=MATCHES.TEAM2 """
@@ -107,9 +116,9 @@ def matches():
 
     #create_table()
     allTournaments = tournaments.get_tournaments()
-    
+
     dsn = app.config['dsn']
-    
+
     app.storeT = StoreTeam(dsn)
     allTeams = app.storeT.getAllTeams(dsn)
 

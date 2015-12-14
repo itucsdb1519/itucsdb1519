@@ -34,6 +34,16 @@ class StoreTM:
         finally:
             connection.close()
 
+    def createInitTMs(self, dsn):
+        app.storeT = StoreTM(app.config['dsn'])
+
+        newTm = tm('Veli', 'Male', 'Turkish', '1978', 1)
+        app.storeT.addTm(newTm, dsn)
+        newTm = tm('Ayşe', 'Female', 'Turkish', '1978', 1)
+        app.storeT.addTm(newTm, dsn)
+        newTm = tm('Jane', 'Female', 'English', '1982', 2)
+        app.storeT.addTm(newTm, dsn)
+
     def addTm(self, tm, dsn):
         with dbapi2.connect(dsn) as connection:
             with connection.cursor() as cursor:
@@ -99,11 +109,11 @@ class StoreTeam:
 
         newTeam = team('Turkey', 'Male', '1920', '4')
         app.storeT.addTeam(newTeam, dsn)
-        newTeam2 = team('New Zealand', 'Male', '1906', '3')
+        newTeam2 = team('England', 'Male', '1936', '3')
         app.storeT.addTeam(newTeam2, dsn)
-        newTeam3 = team('Russia', 'Male', '1936','0')
+        newTeam3 = team('China', 'Male', '1906','5')
         app.storeT.addTeam(newTeam3, dsn)
-        newTeam4 = team('Italy', 'Female', '1943','1')
+        newTeam4 = team('Russia', 'Female', '1943','1')
         app.storeT.addTeam(newTeam4, dsn)
 
     def addTeam(self, team, dsn):
@@ -168,12 +178,10 @@ class StoreP:
 
         newPlayer = player('Hasan', 'Male', 'Turkish', '1994', 1)
         app.store.addPlayer(newPlayer, dsn)
-        newPlayer2 = player('Furkan', 'Male', 'Turkish', '1995', 2)
+        newPlayer2 = player('Rose', 'Female', 'English', '1995', 2)
         app.store.addPlayer(newPlayer2, dsn)
-        newPlayer3 = player('Hüseyin', 'Male', 'Russian', '0000', 3)
+        newPlayer3 = player('Dimitrov', 'Male', 'Russian', '1993', 4)
         app.store.addPlayer(newPlayer3, dsn)
-        newPlayer4 = player('Zeynep', 'Female', 'Italian', '0001', 4)
-        app.store.addPlayer(newPlayer4, dsn)
 
     def addPlayer(self, player, dsn):
         with dbapi2.connect(dsn) as connection:

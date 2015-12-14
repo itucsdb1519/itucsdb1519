@@ -27,6 +27,13 @@ def create_table():
     finally:
         close_connection(cursor)
 
+def create_init_stadiums():
+
+    add_new_stadium('Marmara', '20000', 'Istanbul', 1)
+    add_new_stadium('Wembley', '30000', 'London', 2)
+    add_new_stadium('Moscow', '25000', 'St.Petersburg', 4)
+
+
 
 def get_stadiums():
     cursor = create_connection()

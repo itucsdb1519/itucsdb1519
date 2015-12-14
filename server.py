@@ -45,7 +45,7 @@ def get_elephantsql_dsn(vcap_services):
 
 @app.route('/uninitializeDatabase')
 def uninitDb():
-    statement="""DROP TABLE PLAYERSTATISTICS, MATCHES, PLAYERS, COACHES, REFEREES, TEAMS, TOURNAMENTS, USERS, MATCHSTATISTICS, TECHNICMEMBERS"""
+    statement="""DROP TABLE PLAYERSTATISTICS, MATCHES, PLAYERS, COACHES, REFEREES, TEAMS, TOURNAMENTS, USERS, MATCHSTATISTICS, TECHNICMEMBERS, STADIUMS CASCADE"""
     cursor = create_connection()
     cursor.execute(statement)
     cursor.connection.commit()
@@ -58,18 +58,27 @@ def initDb():
     app.storeTeams.createTable(app.config['dsn'])
     app.storeTeams.createInitTeams(app.config['dsn'])
     coaches.create_table()
+    coaches.create_init_coaches()
     stadiums.create_table()
+    stadiums.create_init_stadiums()
     app.storePlayers = StoreP(app.config['dsn'])
     app.storePlayers.createTable(app.config['dsn'])
     app.storePlayers.createInitPlayers(app.config['dsn'])
     tournaments.create_table()
+    tournaments.create_init_tournaments()
     referees.create_table()
+    referees.create_init_referees()
     users.create_table()
+    users.create_init_users()
     matches.create_table()
+    matches.create_init_matches()
     matchstatistics.create_table()
+    matchstatistics.create_init_matchstatistics()
     playerstatistics.create_table()
-    app.store = StoreTM(app.config['dsn'])
-    app.store.createTable(app.config['dsn'])
+    playerstatistics.create_init_playerstatistics()
+    app.storeTM = StoreTM(app.config['dsn'])
+    app.storeTM.createTable(app.config['dsn'])
+    app.storeTM.createInitTMs(app.config['dsn'])
 
     return render_template('home.html')
 

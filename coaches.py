@@ -39,6 +39,13 @@ def get_coaches():
 
     return coaches
 
+def create_init_coaches():
+
+    add_new_coach('Zehra', 'female', 'turkish', '1964', 1)
+    add_new_coach('Mike', 'male', 'english', '1954', 2)
+    add_new_coach('Chan', 'male', 'chinese', '1962', 3)
+
+
 def update_coach(id, name_update, gender_update, nationality_update, birth_date_update, current_team_update):
     cursor = create_connection()
     statement = """UPDATE COACHES SET NAME = '{}', GENDER = '{}', NATIONALITY = '{}', BIRTH_DATE = '{}', CURRENT_TEAM = '{}' WHERE ID = {}""".format(name_update, gender_update, nationality_update, birth_date_update, current_team_update,id)
