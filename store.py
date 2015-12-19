@@ -124,7 +124,7 @@ class StoreTeam:
     def updateTeam(self, team, id, dsn):
         with dbapi2.connect(dsn) as connection:
             with connection.cursor() as cursor:
-                query = """UPDATE TEAMS SET NATION = '{}', GENDER = '{}', FOUNDDATE = '{}', TIMESWON = '{}' WHERE ID = {} """.format(team.nation, team.gender, team.foundDate, team.timesWon)
+                query = """UPDATE TEAMS SET NATION = '{}', GENDER = '{}', FOUNDDATE = '{}', TIMESWON = '{}' WHERE ID = {} """.format(team.nation, team.gender, team.foundDate, team.timesWon, id)
                 cursor.execute(query)
 
     def deleteTeam(self, id, dsn):
