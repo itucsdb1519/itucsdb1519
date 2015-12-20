@@ -6,7 +6,14 @@ Database Design
 
 **explain the database design of your project**
 
-**include the E/R diagram(s)**
+*E/R Diagram of table tennis database:
+
+    .. figure:: images/erDiagram.png
+        :scale: 90 %
+        :alt: erdiagram
+        :align: center
+
+        **E/R Diagram**
 
 Code
 ----
