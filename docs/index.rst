@@ -1,17 +1,21 @@
 Welcome to itucsdb1519's documentation!
 =======================================
 
-:Team: Team Name
+:Team: itucsdb1519
 
 :Members:
 
-   * Member 1
-   * Member 2
-   * Member 3
-   * Member 4
-   * Member 5
+   * Hasan Burak Namlı
+   * Alican Mertan
+   * Fırat Bayram
+   * Ahmet Yılmaz
 
-**project description goes here (a few paragraphs)**
+**Table Tennis Database**
+
+Main purpose of table tennis page is keeping the record of the players, coaches,
+teams, tournaments, matches, stadiums, referees and technic members. Site includes
+match statistics, player statistics. Through this page users can reach the data about
+table tennis sport.
 
 Contents:
 

@@ -1,16 +1,18 @@
 User Guide
 ==========
 
-**explain how your application works from the user perspective, use
-screenshots whereever appropriate**
+**This part explains how table tennis page works from user perspective**
 
-**to add a picture, use the following example**::
+* Home Page is looking like this :
 
-   .. figure:: picture.png
-      :scale: 50 %
-      :alt: map to buried treasure
+    .. figure:: images/homePage.png
+        :scale: 75 %
+        :alt: homePage
+        :align: center
 
-      This is the caption of the figure (a simple paragraph).
+        **Home Page**
+
+Initializing and uninitializing database can be implemented via 'Initialize Database' and 'Uninitialize Database' links. All of the pages can be reached via listed links
 
 .. toctree::
 
@@ -19,4 +21,3 @@ screenshots whereever appropriate**
    member3
    member4
    member5
-   
