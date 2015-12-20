@@ -568,3 +568,343 @@ that it returns the technicmembers table tuples which it found as an array.
         app.storeT.addTm(newTm, dsn)
 
 This function creates initial elements when database has initialized. It uses add function to create initial tuples.
+
+3 HTML handling .pys
+--------------------
+
+3.1 teams.py
+++++++++++++
+
+* Import part of the teams.py file
+
+     .. code-block:: python
+
+      from flask import redirect
+      from flask import render_template
+      from flask import request
+      from flask import url_for
+
+      from config import app
+      from team import team
+      from store import StoreTeam
+      import psycopg2 as dbapi2
+
+redirect, render_template, request and url_for features of Flask web framework have used.
+Like in store classes app object of Flask has imported from config. team class has imported.
+StoreTeam class has imported from store file. pyscopg2 has imported as a dbapi2 for use as a
+database api.
+
+* teams function for rendering teams.html file
+
+     .. code-block:: python
+
+      @app.route('/teams', methods = ['GET', 'POST'])
+      def teams():
+
+      dsn = app.config['dsn']
+
+      app.store = StoreTeam(dsn)
+
+
+      if request.method == 'GET':
+         allTeams = app.store.getAllTeams(dsn)
+
+This part of teams function renders the url '/teams' with teams.html file. Uses 'GET' and 'POST' methods.
+Uses dsn as a database settings which is implementing in config.py whether ElephantSQL or
+Vagrant database system. app.store variable assigned to a StoreTeam object. All StoreTeam object
+methods can be used via app.store variable. If request.method equals to 'GET' method getAllTeams
+function of StoreTeam object has invoked and gets all teams as and array and passed them to html file.
+After all operations allTeams variable assigned to an array which holds all the teams data. At the end
+of the function allTeams variable send to html file for listing.
+
+* delete method
+
+     .. code-block:: python
+
+      elif 'delete' in request.form:
+         ids = request.form.getlist('teams')
+         for id in ids:
+            app.store.deleteTeam(id, dsn)
+         allTeams = app.store.getAllTeams(dsn)
+
+If request method from user is delete this part of teams function has invoked. It gets the clicked checkbox ids
+and passed that ids one by one to the deleteTeam() function of StoreTeam class. After that tuples get deleted.
+
+* add method
+
+     .. code-block:: python
+
+      elif 'add' in request.form:
+         nation = request.form['nationToAdd']
+         gender = request.form['genderToAdd']
+         foundDate = request.form['foundDateToAdd']
+         timesWon = request.form['timesWonToAdd']
+         newTeam = team(nation, gender, foundDate, timesWon)
+         app.store.addTeam(newTeam, dsn)
+         allTeams = app.store.getAllTeams(dsn)
+
+If request method from user is add this part of teams function has invoked. Datas in the add textboxes has passed as a
+attributes of a team object and addTeam function of StoreTeam class added the tuple using team object attributes as a
+tuple attributes.
+
+* update method
+
+     .. code-block:: python
+
+      elif 'update' in request.form:
+         ids = request.form.getlist('teams')
+         id = ids[0]
+         nation = request.form['nationToUpdate']
+         gender = request.form['genderToUpdate']
+         foundDate = request.form['foundDateToUpdate']
+         timesWon = request.form['timesWonToUpdate']
+         updatedTeam = team(nation, gender, foundDate, timesWon)
+         app.store.updateTeam(updatedTeam, id, dsn)
+         allTeams = app.store.getAllTeams(dsn)
+
+If request method from user is update this part of teams function has invoked. Datas in update textboxes has passed as a
+attributes of a team object and id of the tuple that needs to be update. After that updateTeam function StoreTeam class updated
+the necessary tuple using team object attributes as a tuple attributes.
+
+* find method
+
+     .. code-block:: python
+
+      elif 'find' in request.form:
+         nation = request.form['nationToFind']
+         gender = request.form['genderToFind']
+         foundDate = request.form['foundDateToFind']
+         timesWon = request.form['timesWonToFind']
+         findTeam = team(nation, gender, foundDate, timesWon)
+         allTeams = app.store.selectTeams(findTeam, dsn)
+
+
+      return render_template('teams.html', teams = allTeams)
+
+Finally if request method from user is find this part of teams function has invoked. Datas in find textboxes has passed as a
+attributes of a team object and selectTeams function of StoreTeam find the searched datas with SQL operation in the database and
+returns an array of teams that found.
+
+At the end of function teams.html file rendered with this python code and allTeams attribute passed to html file to be listed.
+
+3.2 players.py
+++++++++++++++
+
+* Import part of the players.py file
+
+     .. code-block:: python
+
+      from flask import redirect
+      from flask import render_template
+      from flask import request
+      from flask import url_for
+
+      from config import app
+      from player import player
+      from store import StoreP
+      from store import StoreTeam
+      import psycopg2 as dbapi2
+
+Like in teams.py file necessary imports for Flask web framework use has implemented.
+player class has imported. Both StoreP and StoreTeam classes has imported because of the
+team foreign key in the players table. After all operations allPlayers variable assigned to an array which holds allPlayers data as well. At the end
+of the function allPlayers variable send to html file for listing and also allTeams variable too.
+
+* players function for rendering players.html file
+
+     .. code-block:: python
+
+      @app.route('/players', methods = ['GET', 'POST'])
+      def players():
+
+         dsn = app.config['dsn']
+
+         app.store = StoreP(dsn)
+
+         app.storeT = StoreTeam(dsn)
+         allTeams = app.storeT.getAllTeams(dsn)
+
+         if request.method == 'GET':
+            allPlayers = app.store.getAllPlayers(dsn)
+
+This part of players function works as same as teams function in teams.py file. With a little difference
+it has another app.storeT variable for using StoreTeam class for getting all teams for foreign key of
+players table team attribute.
+
+* delete method
+
+     .. code-block:: python
+
+      elif 'delete' in request.form:
+        ids = request.form.getlist('players')
+        for id in ids:
+            app.store.deletePlayer(id, dsn)
+        allPlayers = app.store.getAllPlayers(dsn)
+
+This part of players function works as same as teams function of teams.py file.
+
+* add method
+
+     .. code-block:: python
+
+      elif 'add' in request.form:
+        name = request.form['nameToAdd']
+        gender = request.form['genderToAdd']
+        nation = request.form['nationToAdd']
+        birthDate = request.form['birthDateToAdd']
+        team = request.form['teamToAdd']
+        newPlayer = player(name, gender, nation, birthDate, team)
+        app.store.addPlayer(newPlayer, dsn)
+        allPlayers = app.store.getAllPlayers(dsn)
+
+This part of players function also works as same as teams function of teams.py file.
+
+* update method
+
+     .. code-block:: python
+
+      elif 'update' in request.form:
+        ids = request.form.getlist('players')
+        id = ids[0]
+        name = request.form['nameToUpdate']
+        gender = request.form['genderToUpdate']
+        nation = request.form['nationToUpdate']
+        birthDate = request.form['birthDateToUpdate']
+        team = request.form['teamToUpdate']
+        updatedPlayer = player(name, gender, nation, birthDate, team)
+        app.store.updatePlayer(updatedPlayer, id, dsn)
+        allPlayers = app.store.getAllPlayers(dsn)
+
+Also this part of players function works as same as teams function in teams.py
+
+
+* find method
+
+     .. code-block:: python
+
+      elif 'find' in request.form:
+        name = request.form['nameToFind']
+        gender = request.form['genderToFind']
+        nation = request.form['nationToFind']
+        birthDate = request.form['birthDateToFind']
+        team = request.form['teamToFind']
+        findPlayer = player(name, gender, nation, birthDate, team)
+        allPlayers = app.store.selectPlayers(findPlayer, dsn)
+
+
+    return render_template('players.html', players = allPlayers, teams = allTeams )
+
+Final part is also same as teams function in teams.py file.
+
+At the end of function players.html file rendered with this python code and allPlayers and allTeams attribute passed to html file to be listed.
+
+3.3 technicmembers.py
++++++++++++++++++++++
+
+* Import part of the technicmembers.py file
+
+     .. code-block:: python
+
+      from flask import redirect
+      from flask import render_template
+      from flask import request
+      from flask import url_for
+
+      from config import app
+      from technicmember import tm
+      from store import StoreTM
+      import psycopg2 as dbapi2
+
+      import coaches
+
+Like in teams.py file necessary imports for Flask web framework use has implemented.
+tm class has imported. StoreTM class has imported and also coaches has imported because of the
+coach foreign key in the technicmembers table. After all operations allTms variable assigned to an array which holds allTms data as well. At the end
+of the function allTms variable send to html file for listing and also allCoaches variable too.
+
+* technicmembers function for rendering technicMembers.html file
+
+     .. code-block:: python
+
+      @app.route('/technicMembers', methods = ['GET', 'POST'])
+      def technicMembers():
+
+         dsn = app.config['dsn']
+
+         app.store = StoreTM(dsn)
+
+         allCoaches = coaches.get_coaches()
+
+         if request.method == 'GET':
+            allTms = app.store.getAllTms(dsn)
+
+This part of technicmembers function works as same as teams function in teams.py file. With a little difference
+it has allCoaches variable for using getting all coaches from coaches file with coaches.get_coaches function for foreign key of
+technicmembers table coach attribute.
+
+* delete method
+
+     .. code-block:: python
+
+      elif 'delete' in request.form:
+        ids = request.form.getlist('tms')
+        for id in ids:
+            app.store.deleteTm(id, dsn)
+        allTms = app.store.getAllTms(dsn)
+
+This part of technicmembers function works as same as teams function of teams.py file.
+
+* add method
+
+     .. code-block:: python
+
+      elif 'add' in request.form:
+        name = request.form['nameToAdd']
+        gender = request.form['genderToAdd']
+        nation = request.form['nationToAdd']
+        birthDate = request.form['birthDateToAdd']
+        coach = request.form['coachToAdd']
+        newTm = tm(name, gender, nation, birthDate, coach)
+        app.store.addTm(newTm, dsn)
+        allTms = app.store.getAllTms(dsn)
+
+This part of technicmembers function also works as same as teams function of teams.py file.
+
+* update method
+
+     .. code-block:: python
+
+      elif 'update' in request.form:
+        ids = request.form.getlist('tms')
+        id = ids[0]
+        name = request.form['nameToUpdate']
+        gender = request.form['genderToUpdate']
+        nation = request.form['nationToUpdate']
+        birthDate = request.form['birthDateToUpdate']
+        coach = request.form['coachToUpdate']
+        newTm = tm(name, gender, nation, birthDate, coach)
+        app.store.updateTm(newTm, id, dsn)
+        allTms = app.store.getAllTms(dsn)
+
+Also this part of technicmembers function works as same as teams function in teams.py
+
+
+* find method
+
+     .. code-block:: python
+
+      elif 'find' in request.form:
+        name = request.form['nameToFind']
+        gender = request.form['genderToFind']
+        nation = request.form['nationToFind']
+        birthDate = request.form['birthDateToFind']
+        coach = request.form['coachToFind']
+        findTm = tm(name, gender, nation, birthDate, coach)
+        allTms = app.store.selectTms(findTm, dsn)
+
+
+    return render_template('technicMembers.html', tms = allTms, coaches = allCoaches )
+
+Final part is also same as teams function in teams.py file.
+
+At the end of function technicMembers.html file rendered with this python code and allTms and allCoaches attribute passed to html file to be listed.
