@@ -64,11 +64,11 @@ class StoreTM:
     def selectTms(self, tm, dsn):
         with dbapi2.connect(dsn) as connection:
             with connection.cursor() as cursor:
-                query = """SELECT TECHNICMEMBERS.ID, TECHNICMEMBERS.NAME, TECHNICMEMBERS.GENDER, TECHNICMEMBERS.NATION, TECHNICMEMBERS.BIRTHDATE, COACH.NAME
+                query = """SELECT TECHNICMEMBERS.ID, TECHNICMEMBERS.NAME, TECHNICMEMBERS.GENDER, TECHNICMEMBERS.NATION, TECHNICMEMBERS.BIRTHDATE, COACHES.NAME
                 FROM TECHNICMEMBERS INNER JOIN COACHES ON COACHES.ID = TECHNICMEMBERS.COACH
                 WHERE(TECHNICMEMBERS.NAME LIKE  '{}%' ) AND (TECHNICMEMBERS.GENDER LIKE '{}%' ) AND
                 (TECHNICMEMBERS.NATION LIKE '{}%' ) AND (TECHNICMEMBERS.BIRTHDATE LIKE '{}%' ) AND
-                (COACH.NAME LIKE '{}%' ) """.format(tm.name, tm.gender, tm.nation, tm.birthDate, tm.coach)
+                (COACHES.NAME LIKE '{}%' ) """.format(tm.name, tm.gender, tm.nation, tm.birthDate, tm.coach)
                 cursor.execute(query)
                 tms = cursor.fetchall()
                 return tms
