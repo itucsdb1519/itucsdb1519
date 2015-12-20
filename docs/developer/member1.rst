@@ -792,7 +792,7 @@ Also this part of players function works as same as teams function in teams.py
         allPlayers = app.store.selectPlayers(findPlayer, dsn)
 
 
-    return render_template('players.html', players = allPlayers, teams = allTeams )
+      return render_template('players.html', players = allPlayers, teams = allTeams )
 
 Final part is also same as teams function in teams.py file.
 
@@ -903,7 +903,7 @@ Also this part of technicmembers function works as same as teams function in tea
         allTms = app.store.selectTms(findTm, dsn)
 
 
-    return render_template('technicMembers.html', tms = allTms, coaches = allCoaches )
+      return render_template('technicMembers.html', tms = allTms, coaches = allCoaches )
 
 Final part is also same as teams function in teams.py file.
 
