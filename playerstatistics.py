@@ -15,10 +15,10 @@ def create_table():
     try:
         statement = """ CREATE TABLE PLAYERSTATISTICS(
         ID SERIAL PRIMARY KEY,
-        matches_played INTEGER,
-        matches_won INTEGER,
-        win_rate FLOAT,
-        average_score  FLOAT,
+        matches_played VARCHAR(10),
+        matches_won VARCHAR(10),
+        win_rate VARCHAR(10),
+        average_score  VARCHAR(10),
         player INTEGER REFERENCES players ON DELETE CASCADE ON UPDATE CASCADE
         )"""
         cursor.execute(statement)
