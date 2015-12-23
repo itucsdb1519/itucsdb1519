@@ -148,7 +148,7 @@ app object of Flask has imported from config.
 team class and StoreTeam class has imported. Since "corrent_team" attribure refers to teams table
 pyscopg2 has imported as a dbapi2 for use as a database api.
 
-* route function of coaches for rendering teams.html file
+* route function of coaches for rendering coaches.html file
 
      .. code-block:: python
 
