@@ -15,7 +15,7 @@ Coaches Page
 
     .. figure:: imagesMember3/coaches_table.png
         :scale: 75 %
-        :alt: teamstable
+        :alt: coaches_table
         :align: center
 
         **Coaches Table**
@@ -24,14 +24,14 @@ Coaches Page
 
     .. figure:: imagesMember3/coaches_find.png
         :scale: 75 %
-        :alt: findcoaches
+        :alt: coaches_find
         :align: center
 
         **Find Coaches Section**
 
     .. figure:: imagesMember3/coaches_found.png
         :scale: 75 %
-        :alt: findcoaches2
+        :alt: coaches_found
         :align: center
 
         **Sample find operation**
@@ -40,7 +40,7 @@ Coaches Page
 
     .. figure:: imagesMember3/coaches_delete.png
         :scale: 75 %
-        :alt: deleteCoaches
+        :alt: coaches_delete
         :align: center
 
         **Sample deletion**
@@ -49,14 +49,14 @@ Coaches Page
 
     .. figure:: imagesMember3/coaches_update.png
         :scale: 75 %
-        :alt: updateCoaches
+        :alt: coaches_update
         :align: center
 
         **Update Coaches operation**
 
     .. figure:: imagesMember3/coaches_updated.png
         :scale: 75 %
-        :alt: updateCoaches2
+        :alt: coaches_update
         :align: center
 
         **Updated version**
@@ -65,14 +65,14 @@ Coaches Page
 
     .. figure:: imagesMember3/coaches_add.png
         :scale: 75 %
-        :alt: addCoach
+        :alt: coaches_add
         :align: center
 
         **Adding new coach operation**
 
     .. figure:: imagesMember3/coaches_added.png
         :scale: 75 %
-        :alt: addCoach2
+        :alt: coaches_added
         :align: center
 
         **New coach added**
@@ -83,7 +83,7 @@ Player Statistics Page
 
     .. figure:: imagesMember3/playerstatistics_table.png
         :scale: 75 %
-        :alt: playerstatisticsTable
+        :alt: playerstatistics_table
         :align: center
 
         **Player Statistics Table**
@@ -92,7 +92,7 @@ Player Statistics Page
 
     .. figure:: imagesMember3/playerstatistics_find.png
         :scale: 75 %
-        :alt: findPlayerstatistics
+        :alt: playerstatistics_find
         :align: center
 
         **Find Player Section**
@@ -101,14 +101,14 @@ Player Statistics Page
 
     .. figure:: imagesMember3/playerstatistics_delete.png
         :scale: 75 %
-        :alt: deletePlayer
+        :alt: playerstatistics_delete
         :align: center
 
         **Sample deletion**
 
     .. figure:: imagesMember3/playerstatistics_deleted.png
         :scale: 75 %
-        :alt: deletePlayer2
+        :alt: playerstatistics_deleted
         :align: center
 
         **Deleted version**
@@ -117,14 +117,14 @@ Player Statistics Page
 
     .. figure:: imagesMember3/playerstatistics_update.png
         :scale: 75 %
-        :alt: updatePlayer
+        :alt: playerstatisstics_update
         :align: center
 
         **Update Player operation**
 
     .. figure:: imagesMember3/playerstatistics_updated.png
         :scale: 75 %
-        :alt: updatePlayer2
+        :alt: playerstatistics_updated
         :align: center
 
         **Updated version**
@@ -133,14 +133,14 @@ Player Statistics Page
 
     .. figure:: imagesMember3/playerstatistics_add.png
         :scale: 75 %
-        :alt: addPlayer
+        :alt: playerstatistics_add
         :align: center
 
         **Adding new player operation**
 
     .. figure:: imagesMember3/playerstatistics_added.png
         :scale: 75 %
-        :alt: addPlayer2
+        :alt: playerstatistics_added
         :align: center
 
         **New player added**
@@ -152,7 +152,7 @@ Users Page
 
     .. figure:: imagesMember3/users_table.png
         :scale: 75 %
-        :alt: usersTable
+        :alt: users_table
         :align: center
 
         **Users Table**
@@ -161,7 +161,7 @@ Users Page
 
     .. figure:: imagesMember3/users_find.png
         :scale: 75 %
-        :alt: finduser
+        :alt: users_find
         :align: center
 
         **Find Users Section**
@@ -170,14 +170,14 @@ Users Page
 
     .. figure:: imagesMember3/users_delete.png
         :scale: 75 %
-        :alt: deleteuser
+        :alt: users_delete
         :align: center
 
         **Sample deletion**
 
     .. figure:: imagesMember3/users_deleted.png
         :scale: 75 %
-        :alt: deleteTm2
+        :alt: users_deleted
         :align: center
 
         **Deleted version**
@@ -186,14 +186,14 @@ Users Page
 
     .. figure:: imagesMember3/users_update.png
         :scale: 75 %
-        :alt: updateuser
+        :alt: users_update
         :align: center
 
         **Update user operation**
 
     .. figure:: imagesMember3/users_updated.png
         :scale: 75 %
-        :alt: updateuser
+        :alt: users_updated
         :align: center
 
         **Updated version**
@@ -202,19 +202,15 @@ Users Page
 
     .. figure:: imagesMember3/users_add.png
         :scale: 75 %
-        :alt: adduser
+        :alt: users_add
         :align: center
 
         **Adding new user operation**
 
     .. figure:: imagesMember3/users_added.png
         :scale: 75 %
-        :alt: adduser2
+        :alt: users_added
         :align: center
 
         **New user added**
-
-
-
-
 
