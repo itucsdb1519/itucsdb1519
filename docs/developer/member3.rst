@@ -152,9 +152,8 @@ pyscopg2 has imported as a dbapi2 for use as a database api.
 
      .. code-block:: python
 
-      @app.route('/teams', methods = ['GET', 'POST'])
-      def teams():
-
+      @app.route("/coaches/", methods=['GET', 'POST'])
+      def coaches():
       dsn = app.config['dsn']
 
       app.store = StoreTeam(dsn)
