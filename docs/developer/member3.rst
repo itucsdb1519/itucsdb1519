@@ -27,7 +27,7 @@ Database Design
                 +---------------+------------+-----------+-----------+
                 |BIRTH_DATE     | VARCHAR    |   0       |  0        |
                 +---------------+------------+-----------+-----------+
-                |CURRENT_TEAM   | VARCHAR    |   0       |  0        |
+                |CURRENT_TEAM   | INTEGER    |   0       |  0        |
                 +---------------+------------+-----------+-----------+
 
 * *name* keeps the record of name of the given coach.
@@ -60,7 +60,7 @@ Database Design
                 +===============+============+===========+===========+
                 | ID            | INTEGER    |   0       |  1        |
                 +---------------+------------+-----------+-----------+
-                |PLAYER         | VARCHAR    |   0       |  0        |
+                |PLAYER         | INTEGER    |   0       |  0        |
                 +---------------+------------+-----------+-----------+
                 |MATCHES_PLAYED | VARCHAR    |   0       |  0        |
                 +---------------+------------+-----------+-----------+
@@ -68,7 +68,7 @@ Database Design
                 +---------------+------------+-----------+-----------+
                 |WIN_RATE       | VARCHAR    |   0       |  0        |
                 +---------------+------------+-----------+-----------+
-                |AVERAGE_SCORE  | INTEGER    |   0       |  0        |
+                |AVERAGE_SCORE  | VARCHAR    |   0       |  0        |
                 +---------------+------------+-----------+-----------+
 * *player* keeps the record of name of the given player refers to players table on delete and on update cascades
 * *matches_played* keeps the count of played matches of given player.
