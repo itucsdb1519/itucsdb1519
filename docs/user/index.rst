@@ -20,4 +20,3 @@ Initializing and uninitializing database can be implemented via 'Initialize Data
    member2
    member3
    member4
-   member5
