@@ -15,7 +15,7 @@ Teams Page
 
     .. figure:: images/teamsTable.png
         :scale: 75 %
-        :alt: teamstable
+        :alt: teamsTable
         :align: center
 
         **Teams Table**
@@ -24,14 +24,14 @@ Teams Page
 
     .. figure:: images/findTeams.png
         :scale: 75 %
-        :alt: findteams
+        :alt: findTeams
         :align: center
 
         **Find Teams Section**
 
     .. figure:: images/findTeams2.png
         :scale: 75 %
-        :alt: findteams2
+        :alt: findTeams2
         :align: center
 
         **Sample find operation**
@@ -193,7 +193,7 @@ Technic Members Page
 
     .. figure:: images/updateTm2.png
         :scale: 75 %
-        :alt: updateTm
+        :alt: updateTm2
         :align: center
 
         **Updated version**

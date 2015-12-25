@@ -4,7 +4,7 @@ Developer Guide
 Database Design
 ---------------
 
-*E/R Diagram of table tennis database:
+* E/R Diagram of table tennis database:
 
     .. figure:: images/erDiagram.png
         :scale: 90 %
@@ -15,8 +15,6 @@ Database Design
 
 Code
 ----
-
-**explain the technical structure of your code**
 
 
 .. toctree::

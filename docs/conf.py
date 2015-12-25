@@ -44,8 +44,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'itucsdb1519'
-copyright = '2015, Team Name'
+project = 'Table Tennis'
+copyright = '2015, itucsdb1519'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -197,8 +197,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'itucsdb1519.tex', 'itucsdb1519 Documentation',
-   'Team Name', 'manual'),
+  ('index', 'itucsdb1519.tex', 'Table Tennis Documentation',
+   'itucsdb1519', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -242,7 +242,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'itucsdb1519', 'itucsdb1519 Documentation',
-   'Team Name', 'itucsdb1519', 'One line description of project.',
+   'itucsdb1519', 'itucsdb1519', 'One line description of project.',
    'Miscellaneous'),
 ]
 
